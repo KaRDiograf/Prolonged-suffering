@@ -10,8 +10,6 @@ using System.Windows.Forms;
 namespace ProbaC2
 {
     public partial class Form1 : Form
-
-
     {
         
         
@@ -19,6 +17,66 @@ namespace ProbaC2
         int[] positionsI = new int[4];
         int[] positionsJ= new int[4];
 
+        public string GetFigureName()
+        {
+            string name;
+            Random rand = new Random();
+            switch(rand.Next(0,6))
+            {
+                case 0:
+                    {
+                        name = "I";
+                        return name;
+                    }
+                
+                case 1:
+                    {
+                        name = "J";
+                        return name;
+                    }
+               
+                case 2:
+                    {
+                        name = "L";
+                        return name;
+                    }
+                
+                case 3:
+                    {
+                        name = "S";
+                        return name;
+                    }
+                
+                case 4:
+                    {
+                        name = "Z";
+                        return name;
+                    }
+                
+                case 5:
+                    {
+                        name = "O";
+                        return name;
+                        
+                    }
+
+                case 6:
+                    {
+                        name = "T";
+                        return name;
+                        
+                    }
+                default:
+                    {
+                        name = "";
+                        return name;
+                    }
+            }
+            
+            
+        }
+       
+        
         public void GetStartPosition(string name)
         {
             switch (name)
@@ -199,6 +257,12 @@ namespace ProbaC2
                 MoveRight(_Labels, positionsI, positionsJ);
                 Draw(_Labels);
             }
+
+            if (e.KeyData == Keys.Space)
+            {
+                GetStartPosition(GetFigureName()); 
+                Draw(_Labels);
+            }
             
         }
 
@@ -222,7 +286,7 @@ namespace ProbaC2
                     _Labels[i, j].ForeColor = Color.White;                  
                 }
             }
-           GetStartPosition("O");                                  
+           GetStartPosition(GetFigureName());                                  
            Draw(_Labels);
            KeyDown += new KeyEventHandler(Form1_KeyDown);         
         }
