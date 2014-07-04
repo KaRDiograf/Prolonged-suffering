@@ -13,6 +13,8 @@ namespace ProbaC2
 
 
     {
+        
+        
         Label[,] _Labels = new Label[10, 25];
         int[] positionsI = new int[4];
         int[] positionsJ= new int[4];
@@ -21,31 +23,112 @@ namespace ProbaC2
         {
             switch (name)
             {
-                case "Palka":
-                    {
-                        
+                case "I":
+                    {                       
                         for (int i = 0; i < 4; i++)
                         {
                             positionsJ[i] = 0;
-                            positionsI[i] = i + 3;
-                            
+                            positionsI[i] = i + 3;                            
                         }
+                        break;
+                    }
+                
+                case "J":
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            positionsJ[i] = 0;
+                            positionsI[i] = i + 3;
+                        }
+                        positionsJ[3] = 1;
+                        positionsI[3] = 5;
+                        break;
+                    }
+                
+                case "L":
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            positionsJ[i] = 0;
+                            positionsI[i] = i + 3;
+                            positionsJ[3] = 1;
+                            positionsI[3] = 3;
+                        }
+                        break;
+                    }
+                
+                case "T":
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            positionsJ[i] = 0;
+                            positionsI[i] = i + 3;
+                        }
+                        positionsJ[3] = 1;
+                        positionsI[3] = 4;
+                        break;
+                    }
 
+                case "Z":
+                    {
+                        for (int i = 0; i < 2; i++)
+                        {
+                            positionsJ[i] = 0;
+                            positionsI[i] = i + 3;
+                        }
+                        for (int i = 2; i < 4; i++)
+                        {
+                            positionsJ[i] = 1;
+                            positionsI[i] = i + 2;
+                        }
+                        break;
+                    }
+
+                case "S":
+                    {
+                        for (int i = 0; i < 2; i++)
+                        {
+                            positionsJ[i] = 0;
+                            positionsI[i] = i + 4;
+                        }
+                        for (int i = 2; i < 4; i++)
+                        {
+                            positionsJ[i] = 1;
+                            positionsI[i] = i + 1;
+                        }
+                        break;
+                    }
+
+                case "O":
+                    {
+                        for (int i = 0; i < 2; i++)
+                        {
+                            positionsJ[i] = 0;
+                            positionsI[i] = i + 4;
+                        }
+                        for (int i = 2; i < 4; i++)
+                        {
+                            positionsJ[i] = 1;
+                            positionsI[i] = i + 2;
+                        }
                         break;
                     }
             }
+            
+            for (int i = 0; i < 4; i++)
+            {
+                _Labels[positionsI[i], positionsJ[i]].Tag = "1" ;
+            }
+            
         }
 
-        public void F1(Label[,] _Lab)
-        {
-            _Lab[4, 4].BackColor = Color.Green;
-        }
+       
 
         public void MoveDown(Label[,] _Lab, int[] i, int[] j)
         {
-            if (j[0] < 24)
+            if (j[0] < 24 && j[1] < 24 && j[2] < 24 && j[3] < 24)
             {
-                for (int k = 0; k < 4; k++)
+                for (int k = 3; k >= 0; k--)
                 {
 
                     _Lab[i[k], j[k] + 1].Tag = "1";
@@ -57,7 +140,7 @@ namespace ProbaC2
 
         public void MoveLeft(Label[,] _Lab, int[] i, int[] j)
         {
-            if (i[0] > 0)
+            if (i[0] > 0 && i[1] > 0 && i[2] > 0 && i[3] > 0)
             {               
                for (int k = 0; k < 4; k++)
                 {
@@ -70,7 +153,7 @@ namespace ProbaC2
 
         public void MoveRight(Label[,] _Lab, int[] i, int[] j)
         {
-            if (i[3] < 9)
+            if (i[0] < 9 && i[1] < 9 && i[2] < 9 && i[3] < 9)
             {
                 for (int k = 3; k >= 0; k--)
                 {
@@ -81,11 +164,7 @@ namespace ProbaC2
             }
         }
 
-        public void Start(Label[,] _Lab)
-        {
-            
-            _Lab[4, 0].Tag = "1";
-        }
+       
         
         public void Draw( Label[,] _Lab)
         {
@@ -94,14 +173,10 @@ namespace ProbaC2
                     if (_Lab[i,j].Tag == "0")
                     {
                         _Lab[i, j].BackColor = Color.White;
-                        
-
                     }
                     else
                     {
-                        _Lab[i, j].BackColor = Color.Blue;
-                       
-
+                        _Lab[i, j].BackColor = Color.Blue;                       
                     }
         }
 
@@ -131,53 +206,28 @@ namespace ProbaC2
         {
             InitializeComponent();
             this.AutoSize = true;
-            int count = 0;
-            
-           for (int i = 0; i < _Labels.GetLength(0); i++)
+            int count = 0;            
+            for (int i = 0; i < _Labels.GetLength(0); i++)
             {
                 for (int j = 0; j < _Labels.GetLength(1); j++)
                 {
                     count++;
                     _Labels[i, j] = new Label();
                     _Labels[i, j].Width = 15;
-                    _Labels[i, j].Height = 15;
-                    //_Labels[i, j].Location = new Point(_Labels[i, j].Width * i + i * 3, _Labels[i, j].Width *  j/2);
+                    _Labels[i, j].Height = 15;                   
                     _Labels[i, j].Location = new Point(_Labels[i, j].Width * i + i*3+50, _Labels[i, j].Width * j + j*3+50);
-                    //_Labels[i, j].Text = "Label " + count.ToString();
-                     _Labels[i, j].Tag = "0";
-                    
-                    //_Labels[i, j].Name = "Label " + count.ToString();                    
+                     _Labels[i, j].Tag = "0";                                    
                     this.Controls.Add(_Labels[i, j]);
                     _Labels[i, j].BackColor = Color.White;
-                    _Labels[i, j].ForeColor = Color.White;
-                   
-                   
- 
-                   
-                   
+                    _Labels[i, j].ForeColor = Color.White;                  
                 }
             }
-           GetStartPosition("Palka");
+           GetStartPosition("O");                                  
            Draw(_Labels);
-
-            
-            Start(_Labels);
-            
-            Draw(_Labels);
-            KeyDown += new KeyEventHandler(Form1_KeyDown);
-            
-           
-         
+           KeyDown += new KeyEventHandler(Form1_KeyDown);         
         }
 
-     
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-       
+    
        
 
         private void Form1_Load(object sender, EventArgs e)
