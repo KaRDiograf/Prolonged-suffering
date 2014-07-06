@@ -14,14 +14,15 @@ namespace ProbaC2
         
         
         Label[,] _Labels = new Label[10, 25];
-        int[] positionsI = new int[4];
-        int[] positionsJ= new int[4];
+        int[] posI = new int[4];
+        int[] posJ= new int[4];
+        string name = "";
 
         public string GetFigureName()
         {
             string name;
             Random rand = new Random();
-            switch(rand.Next(0,6))
+            switch(rand.Next(0,7))
             {
                 case 0:
                     {
@@ -85,8 +86,8 @@ namespace ProbaC2
                     {                       
                         for (int i = 0; i < 4; i++)
                         {
-                            positionsJ[i] = 0;
-                            positionsI[i] = i + 3;                            
+                            posJ[i] = i;
+                            posI[i] = 4;                            
                         }
                         break;
                     }
@@ -95,11 +96,11 @@ namespace ProbaC2
                     {
                         for (int i = 0; i < 3; i++)
                         {
-                            positionsJ[i] = 0;
-                            positionsI[i] = i + 3;
+                            posJ[i] = 0;
+                            posI[i] = i + 3;
                         }
-                        positionsJ[3] = 1;
-                        positionsI[3] = 5;
+                        posJ[3] = 1;
+                        posI[3] = 5;
                         break;
                     }
                 
@@ -107,10 +108,10 @@ namespace ProbaC2
                     {
                         for (int i = 0; i < 3; i++)
                         {
-                            positionsJ[i] = 0;
-                            positionsI[i] = i + 3;
-                            positionsJ[3] = 1;
-                            positionsI[3] = 3;
+                            posJ[i] = 0;
+                            posI[i] = i + 3;
+                            posJ[3] = 1;
+                            posI[3] = 3;
                         }
                         break;
                     }
@@ -119,11 +120,11 @@ namespace ProbaC2
                     {
                         for (int i = 0; i < 3; i++)
                         {
-                            positionsJ[i] = 0;
-                            positionsI[i] = i + 3;
+                            posJ[i] = 0;
+                            posI[i] = i + 3;
                         }
-                        positionsJ[3] = 1;
-                        positionsI[3] = 4;
+                        posJ[3] = 1;
+                        posI[3] = 4;
                         break;
                     }
 
@@ -131,13 +132,13 @@ namespace ProbaC2
                     {
                         for (int i = 0; i < 2; i++)
                         {
-                            positionsJ[i] = 0;
-                            positionsI[i] = i + 3;
+                            posJ[i] = 0;
+                            posI[i] = i + 3;
                         }
                         for (int i = 2; i < 4; i++)
                         {
-                            positionsJ[i] = 1;
-                            positionsI[i] = i + 2;
+                            posJ[i] = 1;
+                            posI[i] = i + 2;
                         }
                         break;
                     }
@@ -146,13 +147,13 @@ namespace ProbaC2
                     {
                         for (int i = 0; i < 2; i++)
                         {
-                            positionsJ[i] = 0;
-                            positionsI[i] = i + 4;
+                            posJ[i] = 0;
+                            posI[i] = i + 4;
                         }
                         for (int i = 2; i < 4; i++)
                         {
-                            positionsJ[i] = 1;
-                            positionsI[i] = i + 1;
+                            posJ[i] = 1;
+                            posI[i] = i + 1;
                         }
                         break;
                     }
@@ -161,13 +162,13 @@ namespace ProbaC2
                     {
                         for (int i = 0; i < 2; i++)
                         {
-                            positionsJ[i] = 0;
-                            positionsI[i] = i + 4;
+                            posJ[i] = 0;
+                            posI[i] = i + 4;
                         }
                         for (int i = 2; i < 4; i++)
                         {
-                            positionsJ[i] = 1;
-                            positionsI[i] = i + 2;
+                            posJ[i] = 1;
+                            posI[i] = i + 2;
                         }
                         break;
                     }
@@ -175,25 +176,98 @@ namespace ProbaC2
             
             for (int i = 0; i < 4; i++)
             {
-                _Labels[positionsI[i], positionsJ[i]].Tag = "1" ;
+                _Labels[posI[i], posJ[i]].Tag = "1" ;
             }
             
+        }
+
+
+        public bool CanMoveDown(string name)
+        {
+            bool key = true;
+            switch (name)
+            {
+
+                case "I": 
+                    {
+                        
+                        if (_Labels[posI[3], posJ[3] + 1].Tag == "0") return true;
+                        else return false;
+                    }
+
+                case "J":
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == 2) continue;
+                            if (_Labels[posI[i], posJ[i] + 1].Tag == "0")
+                            {
+                                
+                                key = true;
+                            }
+                            else return false;
+                        }
+                        return key;
+                        
+                    }
+
+                case "L":
+                case "S":
+                    {
+                        for (int i = 1; i < 4; i++)
+                        {
+                            if (_Labels[posI[i], posJ[i] + 1].Tag == "0" )
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+                    }
+
+                case "T": 
+                case "Z":
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == 1) continue;
+                            if (_Labels[posI[i], posJ[i] + 1].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+
+                    }
+
+                case "O":
+                    {
+                        for (int i = 2; i < 4; i++)
+                        {
+                            if (_Labels[posI[i], posJ[i] + 1].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key; 
+                    }
+                default: return true;
+                
+            }
+
+            
+
         }
 
        
 
         public void MoveDown(Label[,] _Lab, int[] i, int[] j)
         {
-            if (j[0] < 24 && j[1] < 24 && j[2] < 24 && j[3] < 24)
-            {
+
                 for (int k = 3; k >= 0; k--)
                 {
 
                     _Lab[i[k], j[k] + 1].Tag = "1";
                     _Lab[i[k], j[k]].Tag = "0";
-                    positionsJ[k]++;
+                    posJ[k]++;
                 }
-            }
+            //}
         }
 
         public void MoveLeft(Label[,] _Lab, int[] i, int[] j)
@@ -204,7 +278,7 @@ namespace ProbaC2
                 {
                     _Lab[i[k]-1, j[k]].Tag = "1";
                     _Lab[i[k], j[k]].Tag = "0";
-                    positionsI[k]--;
+                    posI[k]--;
                 }
             }
         }
@@ -217,8 +291,64 @@ namespace ProbaC2
                 {
                     _Lab[i[k] + 1, j[k]].Tag = "1";
                     _Lab[i[k], j[k]].Tag = "0";
-                    positionsI[k]++;
+                    posI[k]++;
                 }
+            }
+        }
+
+        public void Turn(Label[,] _Lab,  ref string name, int[] posI, int[] posJ)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                _Labels[posI[i], posJ[i]].Tag = "0";
+            }
+
+            switch (name)
+            {
+                case "I":
+                    {
+                        if ((posI[1] - 2) >= 0 && posI[1] + 1 <= 9)
+                        {
+                            int k = posI[1] - 2;
+                            for (int i = 0; i < 4; i++)
+                            {
+                                posI[i] = i + k;
+                                posJ[i] = posJ[1];
+
+                            }
+                            name = "turnedI";
+                        }
+                        break;
+                    }
+
+                case "turnedI":
+                    {
+                        if ((posJ[1] - 1) >= 0 && posJ[1] + 2 <= 24)
+                        {
+                            int k = posJ[1] - 1;
+                            for (int i = 0; i < 4; i++)
+                            {
+                                posJ[i] = i + k;
+                                posI[i] = posI[2];
+                            }
+                            name = "I";
+                        }
+                        break;
+                    }
+                
+                
+                case "T":
+                    break;
+                   
+                        
+                        
+                        
+
+                    
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                _Labels[posI[i], posJ[i]].Tag = "1";
             }
         }
 
@@ -240,27 +370,30 @@ namespace ProbaC2
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            
             if (e.KeyData == Keys.Down)
             {
-                MoveDown(_Labels, positionsI, positionsJ);
+                MoveDown(_Labels, posI, posJ);
                 Draw(_Labels);
+ 
             }
 
             if (e.KeyData == Keys.Left)
             {
-                MoveLeft(_Labels, positionsI, positionsJ);
+                MoveLeft(_Labels, posI, posJ);
                 Draw(_Labels);
             }
 
             if (e.KeyData == Keys.Right)
             {
-                MoveRight(_Labels, positionsI, positionsJ);
+                MoveRight(_Labels, posI, posJ);
                 Draw(_Labels);
             }
 
             if (e.KeyData == Keys.Space)
             {
-                GetStartPosition(GetFigureName()); 
+                
+                Turn(_Labels, ref name, posI, posJ);
                 Draw(_Labels);
             }
             
@@ -286,9 +419,12 @@ namespace ProbaC2
                     _Labels[i, j].ForeColor = Color.White;                  
                 }
             }
-           GetStartPosition(GetFigureName());                                  
-           Draw(_Labels);
-           KeyDown += new KeyEventHandler(Form1_KeyDown);         
+            name = GetFigureName();
+            
+            GetStartPosition(name);
+            Draw(_Labels);
+            timer1.Enabled = true;
+            KeyDown += new KeyEventHandler(Form1_KeyDown);         
         }
 
     
@@ -298,6 +434,30 @@ namespace ProbaC2
         {
 
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+
+
+
+
+            if (posJ[0] < 24 && posJ[1] < 24 && posJ[2] < 24 && posJ[3] < 24 && CanMoveDown(name))
+                {
+                    MoveDown(_Labels, posI, posJ);
+                    Draw(_Labels);
+                    
+                }
+                else
+                {
+                    name = GetFigureName();
+                    
+                    GetStartPosition(name);
+                    Draw(_Labels);
+                }
+        }
+
+       
 
        
 
