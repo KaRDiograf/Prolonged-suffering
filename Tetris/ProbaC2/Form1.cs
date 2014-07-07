@@ -610,8 +610,8 @@ namespace ProbaC2
                         RemoveLine(GetNumberOfLine());
                         Draw(_Labels);
                     }
-                    //name = GetFigureName();
-                    name = "Z";
+                    name = GetFigureName();
+                    
                     
 
                     

@@ -7,3 +7,12 @@ D:\Мои документы\Visual Studio 2010\Projects\ProbaC2\ProbaC2\obj\x86
 D:\Мои документы\Visual Studio 2010\Projects\ProbaC2\ProbaC2\obj\x86\Debug\ProbaC2.pdb
 D:\Мои документы\Visual Studio 2010\Projects\ProbaC2\ProbaC2\obj\x86\Debug\ProbaC2.csprojResolveAssemblyReference.cache
 D:\Мои документы\Visual Studio 2010\Projects\ProbaC2\ProbaC2\obj\x86\Debug\ProbaC2.Form2.resources
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\Tetris\ProbaC2\obj\x86\Debug\ProbaC2.exe
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\Tetris\ProbaC2\obj\x86\Debug\ProbaC2.pdb
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\tetris\ProbaC2\bin\Debug\ProbaC2.exe
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\tetris\ProbaC2\bin\Debug\ProbaC2.pdb
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\tetris\ProbaC2\obj\x86\Debug\ProbaC2.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\tetris\ProbaC2\obj\x86\Debug\ProbaC2.Form1.resources
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\tetris\ProbaC2\obj\x86\Debug\ProbaC2.Form2.resources
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\tetris\ProbaC2\obj\x86\Debug\ProbaC2.Properties.Resources.resources
+C:\Users\Admin\Documents\Visual Studio 2013\Projects\tetris\ProbaC2\obj\x86\Debug\ProbaC2.csproj.GenerateResource.Cache
