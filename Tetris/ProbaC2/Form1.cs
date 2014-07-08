@@ -17,6 +17,7 @@ namespace ProbaC2
         int[] posI = new int[4];
         int[] posJ= new int[4];
         string name = "";
+        int k = 0;
 
         public string GetFigureName()
         {
@@ -238,10 +239,10 @@ namespace ProbaC2
                     _Labels[j, 0].Tag = "0";
                 }
         }
-    
 
-    
-    
+
+
+
 
 
         public bool CanMoveDown(string name)
@@ -250,9 +251,9 @@ namespace ProbaC2
             switch (name)
             {
 
-                case "I": 
+                case "I":
                     {
-                        
+
                         if (_Labels[posI[3], posJ[3] + 1].Tag == "0") return true;
                         else return false;
                     }
@@ -264,28 +265,31 @@ namespace ProbaC2
                             if (i == 2) continue;
                             if (_Labels[posI[i], posJ[i] + 1].Tag == "0")
                             {
-                                
+
                                 key = true;
                             }
                             else return false;
                         }
                         return key;
-                        
+
                     }
 
                 case "L":
                 case "S":
+                case "turnedOverJ":
+                case "turnedOverL":
+                case "turnedOverT":
                     {
                         for (int i = 1; i < 4; i++)
                         {
-                            if (_Labels[posI[i], posJ[i] + 1].Tag == "0" )
+                            if (_Labels[posI[i], posJ[i] + 1].Tag == "0")
                                 key = true;
                             else return false;
                         }
                         return key;
                     }
 
-                case "T": 
+                case "T":
                 case "Z":
                     {
                         for (int i = 0; i < 4; i++)
@@ -300,6 +304,9 @@ namespace ProbaC2
                     }
 
                 case "O":
+                case "turnedLeftJ":
+                case "turnedLeftL":
+                case "turnedLeftT":
                     {
                         for (int i = 2; i < 4; i++)
                         {
@@ -307,7 +314,7 @@ namespace ProbaC2
                                 key = true;
                             else return false;
                         }
-                        return key; 
+                        return key;
                     }
 
                 case "turnedI":
@@ -325,21 +332,268 @@ namespace ProbaC2
                     {
                         for (int i = 0; i < 4; i++)
                         {
-                            if (i == 0 || i==2) continue;
+                            if (i == 0 || i == 2) continue;
                             if (_Labels[posI[i], posJ[i] + 1].Tag == "0")
                                 key = true;
                             else return false;
                         }
                         return key;
                     }
+
+                case "turnedRightJ":
+                case "turnedRightL":
+                case "turnedRightT":
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == 1 || i == 2) continue;
+                            if (_Labels[posI[i], posJ[i] + 1].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+                    }
+
+
+                default: return true;
+
+            }
+        }
+
+
+        public bool CanMoveLeft(string name)
+        {
+            bool key = true;
+            switch (name)
+            {
+
+                case "turnedI": 
+                    {
+                        
+                        if (_Labels[posI[0] - 1, posJ[0]].Tag == "0") return true;
+                        else return false;
+                    }
+
+                case "turnedRightT":
+                case "turnedS":
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == 2) continue;
+                            if (_Labels[posI[i] - 1, posJ[i]].Tag == "0")
+                            {
+                                
+                                key = true;
+                            }
+                            else return false;
+                        }
+                        return key;
+                        
+                    }
+
+                case "turnedLeftJ":
+                case "turnedRightJ":
+                case "turnedLeftL":
+                case "turnedLeftT":
+                case "turnedZ":
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (_Labels[posI[i] - 1, posJ[i]].Tag == "0" )
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+                    }
+
+                case "turnedRightL": 
+                
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == 1) continue;
+                            if (_Labels[posI[i] - 1, posJ[i]].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+
+                    }
+
+                case "I":
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (_Labels[posI[i] - 1, posJ[i]].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+                    }
+                
+                case "L":
+                case "J":
+                case "T":
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == 1 || i==2) continue;
+                            if (_Labels[posI[i] - 1, posJ[i]].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+                    }
+
+                case "S":
+                case "Z":
+                case "O":
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (i == 1) continue;
+                            if (_Labels[posI[i] - 1, posJ[i]].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+                    }
+
+                case "turnedOverT":
+                case "turnedOverJ":
+                case "turnedOverL":
+                    {
+                        for (int i = 0; i < 2; i++)
+                        {
+                            if (_Labels[posI[i] - 1, posJ[i]].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+                    }                
                 default: return true;
                 
             }
-
-            
-
         }
 
+
+        public bool CanMoveRight(string name)
+        {
+            bool key = true;
+            switch (name)
+            {
+
+                case "turnedI":
+                    {
+
+                        if (_Labels[posI[3] + 1, posJ[0]].Tag == "0") return true;
+                        else return false;
+                    }
+
+                case "turnedLeftL":
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == 2) continue;
+                            if (_Labels[posI[i] + 1, posJ[i]].Tag == "0")
+                            {
+
+                                key = true;
+                            }
+                            else return false;
+                        }
+                        return key;
+
+                    }
+
+                case "turnedLeftJ":
+                case "turnedRightJ":
+                case "turnedRightL":
+                case "turnedRIghtT":
+                case "turnedZ":
+                    {
+                        for (int i = 1; i < 4; i++)
+                        {
+                            if (_Labels[posI[i] + 1, posJ[i]].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+                    }
+
+                case "turnedLeftT":
+                case "TurnedS":
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == 1) continue;
+                            if (_Labels[posI[i] + 1, posJ[i]].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+
+                    }
+
+                case "I":
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (_Labels[posI[i] + 1, posJ[i]].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+                    }
+
+                case "turnedOverT":
+                case "turnedOverJ":
+                case "turnedOverL":
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == 1 || i == 2) continue;
+                            if (_Labels[posI[i] + 1, posJ[i]].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+                    }
+
+                case "S":
+                case "Z":
+                case "O":
+                    {
+                        for (int i = 1; i < 4; i++)
+                        {
+                            if (i == 2) continue;
+                            if (_Labels[posI[i] + 1, posJ[i]].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+                    }
+
+                case "T":
+                case "J":
+                case "L":
+                    {
+                        for (int i = 2; i < 4; i++)
+                        {
+                            if (_Labels[posI[i] + 1, posJ[i]].Tag == "0")
+                                key = true;
+                            else return false;
+                        }
+                        return key;
+                    }
+
+
+                default: return true;
+
+            }
+
+
+        }
        
 
         public void MoveDown(Label[,] _Lab, int[] i, int[] j)
@@ -422,69 +676,315 @@ namespace ProbaC2
 
                 case "S":
                     {
-                        int positionI = posI[1]-2, positionJ = posJ[1]- 2;
-                        for (int i = 0; i < 2; i++)
+                        int positionI = posI[0], positionJ = posJ[0];
+                        if (positionJ + 2 <= 24)
                         {
-                            posI[i] = positionI + 1;
-                            posJ[i] = i + positionJ + 3;
+                            for (int i = 0; i < 2; i++)
+                            {
+                                posI[i] = positionI - 1;
+                                posJ[i] = i + positionJ;
+                            }
+                            for (int i = 2; i < 4; i++)
+                            {
+                                posI[i] = positionI;
+                                posJ[i] = i + positionJ - 1;
+                            }
+                            name = "turnedS";
                         }
-                        for (int i = 2; i < 4; i++)
-                        {
-                            posI[i] =  positionI;
-                            posJ[i] = i + positionJ ;
-                        }
-                        name = "turnedS";
                         break;
                     }
 
                 case "turnedS":
                     {
-                        int positionI = posI[1] - 4, positionJ = posJ[1] - 2;
-                        for (int i = 0; i < 2; i++)
+                        int positionI = posI[2] , positionJ = posJ[2] ;
+                        if (positionI + 1 <= 9)
                         {
-                            posJ[i] = positionJ;
-                            posI[i] = i + positionI + 4;
+                            for (int i = 0; i < 2; i++)
+                            {
+                                posJ[i] = positionJ;
+                                posI[i] = i + positionI;
+                            }
+                            for (int i = 2; i < 4; i++)
+                            {
+                                posJ[i] = 1 + positionJ;
+                                posI[i] = i + positionI - 3;
+                            }
+                            name = "S";
                         }
-                        for (int i = 2; i < 4; i++)
-                        {
-                            posJ[i] = 1 + positionJ;
-                            posI[i] = i + 1 + positionI;
-                        }
-                        name = "S";
                         break;
                     }
 
                 case "Z":
                     {
                         int positionI = posI[1] , positionJ = posJ[1] - 2;
-                        for (int i = 0; i < 2; i++)
+                        if (positionJ + 3 < 24)
                         {
-                            posI[i] = positionI ;
-                            posJ[i] = i + positionJ + 3;
+                            for (int i = 0; i < 2; i++)
+                            {
+                                posI[i] = positionI;
+                                posJ[i] = i + positionJ + 3;
+                            }
+                            for (int i = 2; i < 4; i++)
+                            {
+                                posI[i] = positionI + 1;
+                                posJ[i] = i + positionJ;
+                            }
+                            name = "turnedZ";
                         }
-                        for (int i = 2; i < 4; i++)
-                        {
-                            posI[i] = positionI + 1;
-                            posJ[i] = i + positionJ;
-                        }
-                        name = "turnedZ";
                         break;
                     }
 
                 case "turnedZ":
                     {
                         int positionI = posI[1] - 4, positionJ = posJ[1] - 2;
-                        for (int i = 0; i < 2; i++)
+                        if (positionI + 3 >= 0)
                         {
-                            posJ[i] = 0 + positionJ;
-                            posI[i] = i + 3 + positionI;
+                            for (int i = 0; i < 2; i++)
+                            {
+                                posJ[i] = 0 + positionJ;
+                                posI[i] = i + 3 + positionI;
+                            }
+                            for (int i = 2; i < 4; i++)
+                            {
+                                posJ[i] = 1 + positionJ;
+                                posI[i] = i + 2 + positionI;
+                            }
+                            name = "Z";
                         }
-                        for (int i = 2; i < 4; i++)
+                        break;
+                    }
+                case "J":
+                    {
+                        int positionI = posI[1], positionJ = posJ[1];
+                        if (positionJ - 1 >= 0)
                         {
-                            posJ[i] = 1 + positionJ;
-                            posI[i] = i + 2 + positionI;
+                            if (_Labels[positionI, positionJ - 1].Tag == "0")
+                            {
+                                for (int i = 1; i < 4; i++)
+                                {
+                                    posJ[i] = positionJ - 2 + i;
+                                    posI[i] = positionI;
+                                }
+                                posJ[0] = positionJ + 1;
+                                posI[0] = positionI - 1;
+                                name = "turnedRightJ";
+                            }
                         }
-                        name = "Z";
+                        break;
+                    }
+
+                case "turnedRightJ":
+                    {
+                        int positionI = posI[2], positionJ = posJ[2];
+                        if (positionI + 1 < 10)
+                        {
+                            if (_Labels[positionI + 1, positionJ].Tag == "0")
+                            {
+                                for (int i = 1; i < 4; i++)
+                                {
+                                    posI[i] = positionI - 2 + i;
+                                    posJ[i] = positionJ;
+                                }
+                                posI[0] = positionI - 1;
+                                posJ[0] = positionJ - 1;
+                                name = "turnedOverJ";
+                            }
+                        }
+                        break;
+                    }
+                case "turnedOverJ":
+                    {
+                        int positionI = posI[2], positionJ = posJ[2];
+                        if (positionJ - 1 >= 0)
+                        {
+                            if (_Labels[positionI, positionJ - 1].Tag == "0")
+                            {
+                                for (int i = 0; i < 3; i++)
+                                {
+                                    posJ[i] = positionJ - 1 + i;
+                                    posI[i] = positionI;
+                                }
+                                posJ[3] = positionJ - 1;
+                                posI[3] = positionI + 1;
+                                name = "turnedLeftJ";
+                            }
+                        }
+                        break;
+                    }
+                case "turnedLeftJ":
+                    {
+                        int positionI = posI[1], positionJ = posJ[1];
+                        if (positionI - 1 >= 0)
+                        {
+                            if (_Labels[positionI + 1, positionJ].Tag == "0")
+                            {
+                                for (int i = 0; i < 3; i++)
+                                {
+                                    posI[i] = positionI - 1 + i;
+                                    posJ[i] = positionJ;
+                                }
+                                posI[3] = positionI + 1;
+                                posJ[3] = positionJ + 1;
+                                name = "J";
+                            }
+                        }
+                        break;
+                    }
+
+                case "L":
+                    {
+                        int positionI = posI[1], positionJ = posJ[1];
+                        if (positionJ - 1 >= 0)
+                        {
+                            if (_Labels[positionI, positionJ - 1].Tag == "0")
+                            {
+                                for (int i = 1; i < 4; i++)
+                                {
+                                    posJ[i] = positionJ - 2 + i;
+                                    posI[i] = positionI;
+                                }
+                                posJ[0] = positionJ - 1;
+                                posI[0] = positionI - 1;
+                                name = "turnedRightL";
+                            }
+                        }
+                        break;
+                    }
+
+                case "turnedRightL":
+                    {
+                        int positionI = posI[2], positionJ = posJ[2];
+                        if (positionI + 1 < 10)
+                        {
+                            if (_Labels[positionI + 1, positionJ].Tag == "0")
+                            {
+                                for (int i = 1; i < 4; i++)
+                                {
+                                    posI[i] = positionI - 2 + i;
+                                    posJ[i] = positionJ;
+                                }
+                                posI[0] = positionI + 1;
+                                posJ[0] = positionJ - 1;
+                                name = "turnedOverL";
+                            }
+                        }
+                        break;
+                    }
+                case "turnedOverL":
+                    {
+                        int positionI = posI[2], positionJ = posJ[2];
+                        if (positionJ - 1 >= 0)
+                        {
+                            if (_Labels[positionI, positionJ - 1].Tag == "0")
+                            {
+                                for (int i = 0; i < 3; i++)
+                                {
+                                    posJ[i] = positionJ - 1 + i;
+                                    posI[i] = positionI;
+                                }
+                                posJ[3] = positionJ + 1;
+                                posI[3] = positionI + 1;
+                                name = "turnedLeftL";
+                            }
+                        }
+                        break;
+                    }
+                case "turnedLeftL":
+                    {
+                        int positionI = posI[1], positionJ = posJ[1];
+                        if (positionI - 1 >= 0)
+                        {
+                            if (_Labels[positionI + 1, positionJ].Tag == "0")
+                            {
+                                for (int i = 0; i < 3; i++)
+                                {
+                                    posI[i] = positionI - 1 + i;
+                                    posJ[i] = positionJ;
+                                }
+                                posI[3] = positionI - 1;
+                                posJ[3] = positionJ + 1;
+                                name = "L";
+                            }
+                        }
+                        break;
+                    }
+
+                case "T":
+                    {
+                        int positionI = posI[1], positionJ = posJ[1];
+                        if (positionJ - 1 >= 0)
+                        {
+                            if (_Labels[positionI, positionJ - 1].Tag == "0")
+                            {
+                                for (int i = 1; i < 4; i++)
+                                {
+                                    posJ[i] = positionJ - 2 + i;
+                                    posI[i] = positionI;
+                                }
+                                posJ[0] = positionJ;
+                                posI[0] = positionI - 1;
+                                name = "turnedRightT";
+                            }
+                        }
+                        break;
+                    }
+
+                case "turnedRightT":
+                    {
+                        int positionI = posI[2], positionJ = posJ[2];
+                        if (positionI + 1 < 10)
+                        {
+                            if (_Labels[positionI + 1, positionJ].Tag == "0")
+                            {
+                                for (int i = 1; i < 4; i++)
+                                {
+                                    posI[i] = positionI - 2 + i;
+                                    posJ[i] = positionJ;
+                                }
+                                posI[0] = positionI;
+                                posJ[0] = positionJ - 1;
+                                name = "turnedOverT";
+                            }
+                        }
+                        break;
+                    }
+                case "turnedOverT":
+                    {
+                        int positionI = posI[2], positionJ = posJ[2];
+                        if (positionJ - 1 >= 0)
+                        {
+                            if (_Labels[positionI, positionJ - 1].Tag == "0")
+                            {
+                                for (int i = 0; i < 3; i++)
+                                {
+                                    posJ[i] = positionJ - 1 + i;
+                                    posI[i] = positionI;
+                                }
+                                posJ[3] = positionJ;
+                                posI[3] = positionI + 1;
+                                name = "turnedLeftT";
+                            }
+                        }
+                        break;
+                    }
+                
+                case "turnedLeftT":
+                    {
+                        int positionI = posI[1], positionJ = posJ[1];
+                        if (positionI - 1 >= 0)
+                        {
+                            if (_Labels[positionI + 1, positionJ].Tag == "0")
+                            {
+                                for (int i = 0; i < 3; i++)
+                                {
+                                    posI[i] = positionI - 1 + i;
+                                    posJ[i] = positionJ;
+                                }
+                                posI[3] = positionI;
+                                posJ[3] = positionJ + 1;
+                                name = "T";
+                            }
+                        }
                         break;
                     }
             }
@@ -522,21 +1022,30 @@ namespace ProbaC2
             
             if (e.KeyData == Keys.Down)
             {
-                MoveDown(_Labels, posI, posJ);
-                Draw(_Labels);
+                if (posJ[0] < 24 && posJ[1] < 24 && posJ[2] < 24 && posJ[3] < 24 && CanMoveDown(name))
+                {
+                    MoveDown(_Labels, posI, posJ);
+                    Draw(_Labels);
+                }
  
             }
 
             if (e.KeyData == Keys.Left)
             {
-                MoveLeft(_Labels, posI, posJ);
-                Draw(_Labels);
+                if (posI[0] > 0 && posI[1] > 0 && posI[2] > 0 && posI[3] > 0 && CanMoveLeft(name))
+                {
+                    MoveLeft(_Labels, posI, posJ);
+                    Draw(_Labels);
+                }
             }
 
             if (e.KeyData == Keys.Right)
             {
-                MoveRight(_Labels, posI, posJ);
-                Draw(_Labels);
+                if (posI[0] < 9 && posI[1] < 9 && posI[2] < 9 && posI[3] < 9 && CanMoveRight(name))
+                {
+                    MoveRight(_Labels, posI, posJ);
+                    Draw(_Labels);
+                }
             }
 
             if (e.KeyData == Keys.Space)
@@ -550,6 +1059,7 @@ namespace ProbaC2
 
         public Form1()
         {
+            
             InitializeComponent();
             this.AutoSize = true;
             int count = 0;            
@@ -568,8 +1078,9 @@ namespace ProbaC2
                     _Labels[i, j].ForeColor = Color.White;                  
                 }
             }
-            //name = GetFigureName();
-            name = "Z";
+            name = GetFigureName();
+            
+            
             
             
             
@@ -589,6 +1100,8 @@ namespace ProbaC2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            
+            label1.Text = k.ToString();
 
 
 
@@ -602,15 +1115,18 @@ namespace ProbaC2
                 }
              else
                 {
-                    label1.Text = GetNumberOfLine().ToString();
+                    //label1.Text = GetNumberOfLine().ToString();
 
                     while (CanRemoveLine())
                     {
                         
                         RemoveLine(GetNumberOfLine());
                         Draw(_Labels);
+                        k += 1000;
+                        
                     }
                     name = GetFigureName();
+                    
                     
                     
 
