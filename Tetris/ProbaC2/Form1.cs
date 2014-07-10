@@ -113,6 +113,18 @@ namespace ProbaC2
                 name = name.Turn(_Labels, posI, posJ);
                 field.Draw(_Labels);
             }
+
+            if (e.KeyData == Keys.D1)
+            {
+                if (k >= 2000)
+                {
+                    for (int i = 0; i < 4; i++)
+                        posJ[i] = posJ[i] + 2;
+                    field.RemoveLine(_Labels, 24);
+                    field.RemoveLine(_Labels, 24);
+                    k -= 2000;
+                }
+            }
             
         }
 
@@ -186,24 +198,10 @@ namespace ProbaC2
         {
             if (k >= 2000)
             {
-                for (int i = 24; i > 3; i--)
-                {
-                    for (int j = 0; j < 10; j++)
-                    {
-                        _Labels[j, i].Tag = _Labels[j, i - 3].Tag;
-                    }
-                }
-                for (int i = 0; i < 3; i++)
-                {
-                    for (int j = 0; j < 10; j++)
-                    {
-                        _Labels[j, 0].Tag = "0";
-                    }
-                }
-                for (int l = 3; l >= 0; l--)
-                {                 
-                    posJ[l]++;
-                }
+                for (int i = 0; i < 4; i++)
+                   posJ[i] = posJ[i] + 2;
+                field.RemoveLine(_Labels, 24);
+                field.RemoveLine(_Labels, 24);
                 k -= 2000;
             }
         }
