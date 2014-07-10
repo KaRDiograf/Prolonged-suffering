@@ -32,106 +32,100 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-
-            this.menuStrip1.SuspendLayout();
+            this.LNewGame = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.LRecords = new System.Windows.Forms.Label();
+            this.LExit = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
             // 
-            this.timer1.Interval = 250;
+            this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Red;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(492, 155);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(479, 172);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 20);
+            this.label1.Size = new System.Drawing.Size(0, 23);
             this.label1.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(492, 124);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Courier New", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(459, 146);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(157, 21);
+            this.label2.Size = new System.Drawing.Size(169, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Количество очков";
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem4,
-            this.toolStripMenuItem3,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(652, 24);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripMenuItem4.Margin = new System.Windows.Forms.Padding(20, 0, 50, 0);
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(25, 20);
-            this.toolStripMenuItem4.Text = "4";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripMenuItem3.Margin = new System.Windows.Forms.Padding(20, 0, 50, 0);
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(25, 20);
-            this.toolStripMenuItem3.Text = "3";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripMenuItem2.Margin = new System.Windows.Forms.Padding(20, 0, 50, 0);
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(25, 20);
-            this.toolStripMenuItem2.Text = "2";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripMenuItem1.Margin = new System.Windows.Forms.Padding(20, 0, 50, 0);
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(25, 20);
-            this.toolStripMenuItem1.Text = "1";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
             // LNewGame
+            // 
+            this.LNewGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LNewGame.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LNewGame.Location = new System.Drawing.Point(458, 378);
+            this.LNewGame.Name = "LNewGame";
+            this.LNewGame.Size = new System.Drawing.Size(168, 33);
+            this.LNewGame.TabIndex = 4;
+            this.LNewGame.Text = "Новая игра";
+            this.LNewGame.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LNewGame.Click += new System.EventHandler(this.LNewGame_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Courier New", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(459, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(169, 20);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Следующая фигура";
+            // 
+            // LRecords
+            // 
+            this.LRecords.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LRecords.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LRecords.Location = new System.Drawing.Point(458, 421);
+            this.LRecords.Name = "LRecords";
+            this.LRecords.Size = new System.Drawing.Size(168, 33);
+            this.LRecords.TabIndex = 6;
+            this.LRecords.Text = "Рекорды";
+            this.LRecords.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LRecords.Click += new System.EventHandler(this.LRecords_Click);
+            // 
             // LExit
+            // 
+            this.LExit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LExit.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LExit.Location = new System.Drawing.Point(458, 463);
+            this.LExit.Name = "LExit";
+            this.LExit.Size = new System.Drawing.Size(168, 33);
+            this.LExit.TabIndex = 7;
+            this.LExit.Text = "Выход";
+            this.LExit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LExit.Click += new System.EventHandler(this.LExit_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(652, 522);
-            this.Controls.Add(this.label2);            this.Controls.Add(this.label1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.BackColor = System.Drawing.Color.Silver;
+            this.ClientSize = new System.Drawing.Size(652, 542);
+            this.Controls.Add(this.LExit);
+            this.Controls.Add(this.LRecords);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.LNewGame);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
-            this.Text = "Tetris: change your mind";
+            this.Text = "Tetris: change your mind v.0.9";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,12 +136,10 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-
+        private System.Windows.Forms.Label LNewGame;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label LRecords;
+        private System.Windows.Forms.Label LExit;
 
 
 

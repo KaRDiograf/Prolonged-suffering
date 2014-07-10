@@ -9,10 +9,11 @@ using System.Windows.Forms;
 
 namespace ProbaC2
 {
+
     public partial class Tabl : Form
     {
         Form1 mainForm = new Form1();
-        public Tabl(string[] names, string[] scores)
+        public Tabl(string[] names,string[] scores)
         {
             InitializeComponent();
             label1.Text = names[0];
@@ -23,11 +24,17 @@ namespace ProbaC2
             label6.Text = scores[2];
             label7.Text = names[3];
             label8.Text = scores[3];
-            label9.Text = names[4];
+            label9.Text =names[4];
             label10.Text = scores[4];
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void Tabl_Load(object sender, EventArgs e)
+        {
+            
+         
+        }
+
+        public void label1_Click(object sender, EventArgs e)
         {
 
         }
