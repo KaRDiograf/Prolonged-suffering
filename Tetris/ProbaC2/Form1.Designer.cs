@@ -38,9 +38,6 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 
-            this.LNewGame = new System.Windows.Forms.Label();
-            this.LExit = new System.Windows.Forms.Label();
-
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,30 +112,10 @@
             this.toolStripMenuItem1.Text = "1";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-
             // LNewGame
-
-
-            this.LNewGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LNewGame.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LNewGame.Location = new System.Drawing.Point(365, 177);
-            this.LNewGame.Name = "LNewGame";
-            this.LNewGame.Size = new System.Drawing.Size(100, 23);
-            this.LNewGame.TabIndex = 3;
-            this.LNewGame.Text = "Новая игра";
-            this.LNewGame.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LNewGame.Click += new System.EventHandler(this.LNewGame_Click);
             // 
             // LExit
-            // 
-            this.LExit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LExit.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LExit.Location = new System.Drawing.Point(365, 263);
-            this.LExit.Name = "LExit";
-            this.LExit.Size = new System.Drawing.Size(100, 23);
-            this.LExit.TabIndex = 4;
-            this.LExit.Text = "Выход";
-            this.LExit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LExit.Click += new System.EventHandler(this.LExit_Click);
             // 
             // Form1
@@ -147,9 +124,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(652, 522);
-            this.Controls.Add(this.LExit);
-            this.Controls.Add(this.LNewGame);            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);            this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -172,9 +147,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-
-        private System.Windows.Forms.Label LNewGame;
-        private System.Windows.Forms.Label LExit;
 
 
 

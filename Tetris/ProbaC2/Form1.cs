@@ -153,12 +153,10 @@ namespace ProbaC2
                     _Labels[i, j].Width = 15;
                     _Labels[i, j].Height = 15;
                     _Labels[i, j].Location = new Point(_Labels[i, j].Width * i + i * 3 + 50, _Labels[i, j].Width * j + j * 3 + 50);
-                    _Labels[i, j].Tag = "0";
-                    this.Controls.Add(_Labels[i, j]);
+                    _Labels[i, j].Tag = "0";                    this.Controls.Add(_Labels[i, j]);
                     _Labels[i, j].BackColor = Color.White;
                     _Labels[i, j].ForeColor = Color.White;
                 }
-            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -198,8 +196,14 @@ namespace ProbaC2
 
                         }                                                    
                         timer1.Enabled = false;
-                        LNewGame.Enabled = true;                    }
-                    field.Draw(_Labels);
+                        if (recTable.CanChangeTabl(scores, k))
+                        {
+                            
+                            recTable.ChangeTabl(names, scores, "Vanya", k.ToString(), recTable.GetPlayerPosition(scores, k));
+
+                        }                                                    
+                        timer1.Enabled = false;
+                        //RecTable.Enabled = true;                    field.Draw(_Labels);
                 }
         }
 
@@ -217,17 +221,15 @@ namespace ProbaC2
 
         private void LNewGame_Click(object sender, EventArgs e)
         {
-            k = 0;
             name = GetFigure();
             name.GetStartPosition(_Labels, posI, posJ);
             field.Draw(_Labels);
-            timer1.Enabled = true;           
+timer1.Enabled = true;           
             LNewGame.Enabled = false;
-            KeyDown += new KeyEventHandler(Form1_KeyDown);
-        }
+            KeyDown += new KeyEventHandler(Form1_KeyDown);        }
         private void LExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }    
+        }
     }
 }
