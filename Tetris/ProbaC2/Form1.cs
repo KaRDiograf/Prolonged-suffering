@@ -130,7 +130,6 @@ namespace ProbaC2
 
         public Form1()
         {
-            
             InitializeComponent();
             this.AutoSize = true;
             int count = 0;            
@@ -148,12 +147,7 @@ namespace ProbaC2
                     _Labels[i, j].BackColor = Color.White;
                     _Labels[i, j].ForeColor = Color.White;                  
                 }
-            }
-            name = GetFigure();
-            name.GetStartPosition(_Labels, posI, posJ);
-            field.Draw(_Labels);
-            timer1.Enabled = true;
-            KeyDown += new KeyEventHandler(Form1_KeyDown);         
+            }         
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -204,6 +198,16 @@ namespace ProbaC2
                 field.RemoveLine(_Labels, 24);
                 k -= 2000;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            name = GetFigure();
+            name.GetStartPosition(_Labels, posI, posJ);
+            field.Draw(_Labels);
+            timer1.Enabled = true;
+            KeyDown += new KeyEventHandler(Form1_KeyDown);
+            button1.Enabled = false;
         }
     }
 }
