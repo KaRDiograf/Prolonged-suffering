@@ -1102,7 +1102,7 @@ namespace ProbaC2
         {
             
             label1.Text = k.ToString();
-
+            label1.BackColor = Color.Khaki;
 
 
 
@@ -1143,6 +1143,32 @@ namespace ProbaC2
                     }
                     Draw(_Labels);
                 }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (k >= 2000)
+            {
+                for (int i = 24; i > 3; i--)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        _Labels[j, i].Tag = _Labels[j, i - 3].Tag;
+                    }
+                }
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        _Labels[j, 0].Tag = "0";
+                    }
+                }
+                for (int l = 3; l >= 0; l--)
+                {                 
+                    posJ[l]++;
+                }
+                k -= 2000;
+            }
         }
 
        
