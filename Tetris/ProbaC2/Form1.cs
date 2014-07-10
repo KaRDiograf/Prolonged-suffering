@@ -219,12 +219,18 @@ namespace ProbaC2
 
         private void LNewGame_Click(object sender, EventArgs e)
         {
+            k = 0;
             name = GetFigure();
             name.GetStartPosition(_Labels, posI, posJ);
             field.Draw(_Labels);
             timer1.Enabled = true;
             KeyDown += new KeyEventHandler(Form1_KeyDown);
             LNewGame.Enabled = false;
+        }
+
+        private void LExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
