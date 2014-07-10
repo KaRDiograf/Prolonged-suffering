@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 using MyFIgures;
 
 namespace ProbaC2
@@ -13,12 +14,15 @@ namespace ProbaC2
     public partial class Form1 : Form
     {   
         Label[,] _Labels = new Label[10, 25];
-        Label[,] _LabelsM = new Label[4, 4];
         int[] posI = new int[4];
         int[] posJ = new int[4];
         int k = 0;
         Figure name;
         Field field = new Field();
+        FileInfo file = new FileInfo("Tabl.txt");
+        string[] names = new string[5];
+        string[] scores = new string[5];
+        RecordsTable recTable = new RecordsTable();
 
         public Figure GetFigure()
         {
@@ -75,6 +79,12 @@ namespace ProbaC2
                         return name;
                     }
             }
+        }
+
+        public void ShowTable(string[] names, string[] scores)
+        {
+            Tabl table = new Tabl(names, scores);
+            table.ShowDialog();
         }
        
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -133,7 +143,7 @@ namespace ProbaC2
         {
             InitializeComponent();
             this.AutoSize = true;
-            int count = 0;            
+            int count = 0;
             for (int i = 0; i < _Labels.GetLength(0); i++)
             {
                 for (int j = 0; j < _Labels.GetLength(1); j++)
@@ -141,29 +151,12 @@ namespace ProbaC2
                     count++;
                     _Labels[i, j] = new Label();
                     _Labels[i, j].Width = 15;
-                    _Labels[i, j].Height = 15;                   
-                    _Labels[i, j].Location = new Point(_Labels[i, j].Width * i + i*3+50, _Labels[i, j].Width * j + j*3+50);
-                    _Labels[i, j].Tag = "0";                                    
+                    _Labels[i, j].Height = 15;
+                    _Labels[i, j].Location = new Point(_Labels[i, j].Width * i + i * 3 + 50, _Labels[i, j].Width * j + j * 3 + 50);
+                    _Labels[i, j].Tag = "0";
                     this.Controls.Add(_Labels[i, j]);
                     _Labels[i, j].BackColor = Color.White;
-                    _Labels[i, j].ForeColor = Color.White;                  
-                }
-            }
-
-            count = 0;
-            for (int i = 0; i < _LabelsM.GetLength(0); i++)
-            {
-                for (int j = 0; j < _LabelsM.GetLength(1); j++)
-                {
-                    count++;
-                    _LabelsM[i, j] = new Label();
-                    _LabelsM[i, j].Width = 15;
-                    _LabelsM[i, j].Height = 15;
-                    _LabelsM[i, j].Location = new Point(_LabelsM[i, j].Width * i + i * 3 + 300, _LabelsM[i, j].Width * j + j * 3 + 50);
-                    _LabelsM[i, j].Tag = "0";
-                    this.Controls.Add(_LabelsM[i, j]);
-                    _LabelsM[i, j].BackColor = Color.White;
-                    _LabelsM[i, j].ForeColor = Color.White;
+                    _Labels[i, j].ForeColor = Color.White;
                 }
             }
         }
@@ -198,9 +191,14 @@ namespace ProbaC2
                     if (!name.CanMoveDown(_Labels, posI, posJ))
                     {
                         field.Draw(_Labels);
+                        timer1.Enabled = false;                        if (recTable.CanChangeTabl(scores, k))
+                        {
+                            
+                            recTable.ChangeTabl(names, scores, "Vanya", k.ToString(), recTable.GetPlayerPosition(scores, k));
+
+                        }                                                    
                         timer1.Enabled = false;
-                        LNewGame.Enabled = true;
-                    }
+                        LNewGame.Enabled = true;                    }
                     field.Draw(_Labels);
                 }
         }
@@ -223,14 +221,13 @@ namespace ProbaC2
             name = GetFigure();
             name.GetStartPosition(_Labels, posI, posJ);
             field.Draw(_Labels);
-            timer1.Enabled = true;
-            KeyDown += new KeyEventHandler(Form1_KeyDown);
+            timer1.Enabled = true;           
             LNewGame.Enabled = false;
+            KeyDown += new KeyEventHandler(Form1_KeyDown);
         }
-
         private void LExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
+        }    
     }
 }
