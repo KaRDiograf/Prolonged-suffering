@@ -38,6 +38,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.RecTable = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,12 +126,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // RecTable
+            // 
+            this.RecTable.Location = new System.Drawing.Point(299, 238);
+            this.RecTable.Name = "RecTable";
+            this.RecTable.Size = new System.Drawing.Size(128, 36);
+            this.RecTable.TabIndex = 4;
+            this.RecTable.Text = "Показать таблицу рекордов";
+            this.RecTable.UseVisualStyleBackColor = true;
+            this.RecTable.Click += new System.EventHandler(this.RecTable_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(652, 522);
+            this.Controls.Add(this.RecTable);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -157,6 +169,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button RecTable;
 
 
 

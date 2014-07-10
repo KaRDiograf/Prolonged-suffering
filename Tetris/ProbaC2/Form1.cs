@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 using MyFIgures;
 
 namespace ProbaC2
@@ -18,6 +19,10 @@ namespace ProbaC2
         int k = 0;
         Figure name;
         Field field = new Field();
+        FileInfo file = new FileInfo("Tabl.txt");
+        string[] names = new string[5];
+        string[] scores = new string[5];
+        RecordsTable recTable = new RecordsTable();
 
         public Figure GetFigure()
         {
@@ -74,6 +79,12 @@ namespace ProbaC2
                         return name;
                     }
             }
+        }
+
+        public void ShowTable(string[] names, string[] scores)
+        {
+            Tabl table = new Tabl(names, scores);
+            table.ShowDialog();
         }
        
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -147,7 +158,8 @@ namespace ProbaC2
                     _Labels[i, j].BackColor = Color.White;
                     _Labels[i, j].ForeColor = Color.White;                  
                 }
-            }         
+            }           
+            KeyDown += new KeyEventHandler(Form1_KeyDown);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -181,8 +193,14 @@ namespace ProbaC2
                     {
                         field.Draw(_Labels);
                         timer1.Enabled = false;
-                        Form2 secondForm = new Form2();
-                        secondForm.ShowDialog(); 
+                        if (recTable.CanChangeTabl(scores, k))
+                        {
+                            
+                            recTable.ChangeTabl(names, scores, "Vanya", k.ToString(), recTable.GetPlayerPosition(scores, k));
+
+                        }                                                    
+                        timer1.Enabled = false;
+                        RecTable.Enabled = true;
                     }
                     field.Draw(_Labels);
                 }
@@ -205,9 +223,23 @@ namespace ProbaC2
             name = GetFigure();
             name.GetStartPosition(_Labels, posI, posJ);
             field.Draw(_Labels);
-            timer1.Enabled = true;
-            KeyDown += new KeyEventHandler(Form1_KeyDown);
+            timer1.Enabled = true;           
             button1.Enabled = false;
+            
+            
         }
+
+        private void RecTable_Click(object sender, EventArgs e)
+        {
+            FileInfo file = new FileInfo("Tabl.txt");
+            if (file.Exists == false)
+            {
+                file.Create();
+            }
+            recTable.ReadTable(names, scores);
+            ShowTable(names, scores);
+        }
+
+        
     }
 }
