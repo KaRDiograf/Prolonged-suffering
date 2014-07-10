@@ -13,8 +13,9 @@ namespace ProbaC2
     public partial class Form1 : Form
     {   
         Label[,] _Labels = new Label[10, 25];
+        Label[,] _LabelsM = new Label[4, 4];
         int[] posI = new int[4];
-        int[] posJ= new int[4];
+        int[] posJ = new int[4];
         int k = 0;
         Figure name;
         Field field = new Field();
@@ -142,12 +143,29 @@ namespace ProbaC2
                     _Labels[i, j].Width = 15;
                     _Labels[i, j].Height = 15;                   
                     _Labels[i, j].Location = new Point(_Labels[i, j].Width * i + i*3+50, _Labels[i, j].Width * j + j*3+50);
-                     _Labels[i, j].Tag = "0";                                    
+                    _Labels[i, j].Tag = "0";                                    
                     this.Controls.Add(_Labels[i, j]);
                     _Labels[i, j].BackColor = Color.White;
                     _Labels[i, j].ForeColor = Color.White;                  
                 }
-            }         
+            }
+
+            count = 0;
+            for (int i = 0; i < _LabelsM.GetLength(0); i++)
+            {
+                for (int j = 0; j < _LabelsM.GetLength(1); j++)
+                {
+                    count++;
+                    _LabelsM[i, j] = new Label();
+                    _LabelsM[i, j].Width = 15;
+                    _LabelsM[i, j].Height = 15;
+                    _LabelsM[i, j].Location = new Point(_LabelsM[i, j].Width * i + i * 3 + 300, _LabelsM[i, j].Width * j + j * 3 + 50);
+                    _LabelsM[i, j].Tag = "0";
+                    this.Controls.Add(_LabelsM[i, j]);
+                    _LabelsM[i, j].BackColor = Color.White;
+                    _LabelsM[i, j].ForeColor = Color.White;
+                }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
