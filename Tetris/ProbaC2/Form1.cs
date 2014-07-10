@@ -199,8 +199,7 @@ namespace ProbaC2
                     {
                         field.Draw(_Labels);
                         timer1.Enabled = false;
-                        Form2 secondForm = new Form2();
-                        secondForm.ShowDialog(); 
+                        LNewGame.Enabled = true;
                     }
                     field.Draw(_Labels);
                 }
@@ -218,14 +217,14 @@ namespace ProbaC2
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void LNewGame_Click(object sender, EventArgs e)
         {
             name = GetFigure();
             name.GetStartPosition(_Labels, posI, posJ);
             field.Draw(_Labels);
             timer1.Enabled = true;
             KeyDown += new KeyEventHandler(Form1_KeyDown);
-            button1.Enabled = false;
+            LNewGame.Enabled = false;
         }
     }
 }

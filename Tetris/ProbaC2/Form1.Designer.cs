@@ -37,7 +37,7 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.LNewGame = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,18 +112,17 @@
             this.toolStripMenuItem1.Text = "1";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-            // button1
+            // LNewGame
             // 
-            this.button1.CausesValidation = false;
-            this.button1.Location = new System.Drawing.Point(299, 155);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 39);
-            this.button1.TabIndex = 3;
-            this.button1.TabStop = false;
-            this.button1.Text = "Новая игра";
-            this.button1.UseMnemonic = false;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.LNewGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LNewGame.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.LNewGame.Location = new System.Drawing.Point(365, 177);
+            this.LNewGame.Name = "LNewGame";
+            this.LNewGame.Size = new System.Drawing.Size(100, 23);
+            this.LNewGame.TabIndex = 3;
+            this.LNewGame.Text = "Новая игра";
+            this.LNewGame.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LNewGame.Click += new System.EventHandler(this.LNewGame_Click);
             // 
             // Form1
             // 
@@ -131,7 +130,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(652, 522);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.LNewGame);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
@@ -156,7 +155,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label LNewGame;
 
 
 
