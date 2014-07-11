@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="figureChoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="figureChoice.Designer.cs">
+      <DependentUpon>figureChoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,12 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="PauseMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PauseMenu.Designer.cs">
+      <DependentUpon>PauseMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Таблица рекордов.cs">
@@ -71,11 +83,17 @@
     <Compile Include="Таблица рекордов.Designer.cs">
       <DependentUpon>Таблица рекордов.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="figureChoice.resx">
+      <DependentUpon>figureChoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PauseMenu.resx">
+      <DependentUpon>PauseMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -85,6 +103,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Таблица рекордов.resx">
       <DependentUpon>Таблица рекордов.cs</DependentUpon>
@@ -98,6 +117,27 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Figures\I.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Figures\J.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Figures\L.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Figures\O.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Figures\S.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Figures\Z.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Figures\T.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

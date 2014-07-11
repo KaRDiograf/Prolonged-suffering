@@ -29,6 +29,7 @@ namespace ProbaC2
         string[] scores = new string[5];
         RecordsTable recTable = new RecordsTable();
         public string playerName;
+        private PauseMenu pauseMenu = new PauseMenu();
        
         public Figure GetFigure()
         {
@@ -130,19 +131,32 @@ namespace ProbaC2
             }
 
             if (e.KeyData == Keys.D1)
-            {/*
+            {
                 for (int i = 0; i < 4; i++ )
                 {
                     posJ[i] = posJ[i] + 2;
                 }
                     field.RemoveLine(_Labels, 24);
-                    field.RemoveLine(_Labels, 24);
-                */
-                timer1.Enabled = false;
+                    field.RemoveLine(_Labels, 24);     
             }
 
-            if (e.KeyData == Keys.D2)
+            if (e.KeyData == Keys.Escape)
             {
+                timer1.Enabled = false;
+                pauseMenu.ShowDialog();
+                if (pauseMenu.choice.isChanged)
+                {
+                    k -= pauseMenu.choice.price;
+                    nextFigure = pauseMenu.choice.chosenFigure;
+                    nextFigField.Clear(nextFig);
+                    nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
+                    if (nextFigPosJ[3] != 3)
+                    {
+                        nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+                    }
+                    nextFigField.Draw(nextFig);
+                    pauseMenu.choice.isChanged = false;
+                }
                 timer1.Enabled = true;
             }
         }
@@ -226,12 +240,15 @@ namespace ProbaC2
                         
                         field.Draw(_Labels);
                         timer1.Enabled = false;
-                        //Form2 yourName = new Form2();
-                        //yourName.ShowDialog();
                         if (recTable.CanChangeTabl(scores, k))
                         {
-                           
-                            recTable.ChangeTabl(names, scores, "Vasya", k.ToString(), recTable.GetPlayerPosition(scores, k));
+
+                            Form2 yourName = new Form2();
+                            yourName.ShowDialog();
+                            playerName = yourName.textBox1.Text;
+                            recTable.ChangeTabl(names, scores, playerName, k.ToString(), recTable.GetPlayerPosition(scores, k));
+                            recTable.ReadTable(names, scores);
+                            ShowTable(names, scores);
                         }
    
                         timer1.Enabled = false;
