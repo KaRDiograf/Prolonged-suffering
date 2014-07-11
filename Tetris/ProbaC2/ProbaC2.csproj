@@ -36,7 +36,7 @@
   <ItemGroup>
     <Reference Include="MyFIgures, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Visual Studio 2010\Projects\MyFIgures\MyFIgures\bin\Debug\MyFIgures.dll</HintPath>
+      <HintPath>.\MyFIgures.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

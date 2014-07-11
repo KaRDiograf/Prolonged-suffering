@@ -28,6 +28,7 @@ namespace ProbaC2
         string[] names = new string[5];
         string[] scores = new string[5];
         RecordsTable recTable = new RecordsTable();
+        public string playerName;
        
         public Figure GetFigure()
         {
@@ -222,11 +223,15 @@ namespace ProbaC2
                     nextFigField.Draw(nextFig);
                     if (!name.CanMoveDown(_Labels, posI, posJ))
                     {
+                        
                         field.Draw(_Labels);
                         timer1.Enabled = false;
+                        //Form2 yourName = new Form2();
+                        //yourName.ShowDialog();
                         if (recTable.CanChangeTabl(scores, k))
                         {
-                            recTable.ChangeTabl(names, scores, "Vanya", k.ToString(), recTable.GetPlayerPosition(scores, k));
+                           
+                            recTable.ChangeTabl(names, scores, "Vasya", k.ToString(), recTable.GetPlayerPosition(scores, k));
                         }
    
                         timer1.Enabled = false;
@@ -241,13 +246,18 @@ namespace ProbaC2
 
         private void LNewGame_Click(object sender, EventArgs e)
         {
+            k = 0;
+            field.Clear(_Labels);
             nextFigure = GetFigure();
-            name = new I();
+            name = new S();
             name.GetStartPosition(_Labels, posI, posJ);
             field.Draw(_Labels);
             nextFigure = GetFigure();           
             nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
-            nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+            if (nextFigPosJ[3] != 3)
+            {
+                nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+            }
             nextFigField.Draw(nextFig);
             field.Draw(_Labels);
             timer1.Enabled = true;

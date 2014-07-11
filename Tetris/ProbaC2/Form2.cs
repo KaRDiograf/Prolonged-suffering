@@ -26,6 +26,9 @@ namespace ProbaC2
         public Form2()
         {
             InitializeComponent();
+            Form1 mainForm = new Form1();
+            mainForm.playerName = textBox1.Text;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
