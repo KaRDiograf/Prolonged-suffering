@@ -31,6 +31,7 @@ namespace ProbaC2
         public string playerName;
         private PauseMenu pauseMenu = new PauseMenu();
         bool gameIsStarted = false;
+        string figureName;
        
         public Figure GetFigure()
         {
@@ -141,6 +142,20 @@ namespace ProbaC2
                     field.RemoveLine(_Labels, 24);     
             }
 
+            if (e.KeyData == Keys.D2)
+            {
+                nextFigure = new Bomb();
+                figureName = "Bomb";
+                k -= 3000;
+                nextFigField.Clear(nextFig);
+                nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
+                if (nextFigPosJ[3] != 3)
+                {
+                    nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+                }
+                nextFigField.Draw(nextFig);
+            }
+
             if (e.KeyData == Keys.Escape)
             {
                 if (gameIsStarted)
@@ -228,6 +243,10 @@ namespace ProbaC2
                         field.RemoveLine(_Labels,  field.GetNumberOfLine(_Labels));
                         field.Draw(_Labels);
                         k += 1000;           
+                    }
+                    if (figureName == "Bomb")
+                    {
+                        name.Boom(_Labels, posI, posJ);
                     }
                     name = nextFigure;
                     name.GetStartPosition(_Labels, posI, posJ);
