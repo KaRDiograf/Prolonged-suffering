@@ -30,6 +30,7 @@ namespace ProbaC2
         RecordsTable recTable = new RecordsTable();
         public string playerName;
         private PauseMenu pauseMenu = new PauseMenu();
+        bool gameIsStarted = false;
        
         public Figure GetFigure()
         {
@@ -142,22 +143,25 @@ namespace ProbaC2
 
             if (e.KeyData == Keys.Escape)
             {
-                timer1.Enabled = false;
-                pauseMenu.ShowDialog();
-                if (pauseMenu.choice.isChanged)
+                if (gameIsStarted)
                 {
-                    k -= pauseMenu.choice.price;
-                    nextFigure = pauseMenu.choice.chosenFigure;
-                    nextFigField.Clear(nextFig);
-                    nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
-                    if (nextFigPosJ[3] != 3)
+                    timer1.Enabled = false;
+                    pauseMenu.ShowDialog();
+                    if (pauseMenu.choice.isChanged)
                     {
-                        nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+                        k -= pauseMenu.choice.price;
+                        nextFigure = pauseMenu.choice.chosenFigure;
+                        nextFigField.Clear(nextFig);
+                        nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
+                        if (nextFigPosJ[3] != 3)
+                        {
+                            nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+                        }
+                        nextFigField.Draw(nextFig);
+                        pauseMenu.choice.isChanged = false;
                     }
-                    nextFigField.Draw(nextFig);
-                    pauseMenu.choice.isChanged = false;
+                    timer1.Enabled = true;
                 }
-                timer1.Enabled = true;
             }
         }
 
@@ -263,6 +267,7 @@ namespace ProbaC2
 
         private void LNewGame_Click(object sender, EventArgs e)
         {
+            gameIsStarted = true;
             k = 0;
             field.Clear(_Labels);
             nextFigure = GetFigure();
