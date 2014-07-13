@@ -360,7 +360,6 @@ namespace ProbaC2
                         newAch.Visible = true;
                     }
                     field.Draw(_Labels);
-
                     timer1.Enabled = false;
                     LNewGame.Enabled = true;
                     LRecords.Enabled = true;                  
@@ -422,11 +421,17 @@ namespace ProbaC2
         private void newAch_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
+            achFile.ReadAchievments(achAreCompleted);
+            UnlockAchievments(achAreCompleted);
+            pauseMenu.achForm.achArray = achAreCompleted;
             pauseMenu.achForm.ShowDialog();
         }
 
         private void ShowAchievments_Click(object sender, EventArgs e)
         {
+            achFile.ReadAchievments(achAreCompleted);
+            UnlockAchievments(achAreCompleted);
+            pauseMenu.achForm.achArray = achAreCompleted;
             pauseMenu.achForm.ShowDialog();
         }
 
