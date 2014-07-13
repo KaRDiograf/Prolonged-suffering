@@ -134,6 +134,7 @@ namespace ProbaC2
 
             if (e.KeyData == Keys.D1)
             {
+                k -= 3000;
                 for (int i = 0; i < 4; i++ )
                 {
                     posJ[i] = posJ[i] + 2;
