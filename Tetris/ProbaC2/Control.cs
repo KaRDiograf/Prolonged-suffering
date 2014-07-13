@@ -24,14 +24,19 @@ namespace ProbaC2
             {
                 file.Create();
             }
-            StreamReader streamReader = new StreamReader("Control.txt",Encoding.Default); //Открываем файл для чтения
-            string str = ""; //Объявляем переменную, в которую будем записывать текст из файла
+            StreamReader streamReader = new StreamReader("Control.txt",Encoding.Default); 
+            string str = ""; 
 
-            while (!streamReader.EndOfStream) //Цикл длиться пока не будет достигнут конец файла
+            while (!streamReader.EndOfStream) 
             {
-                str += streamReader.ReadLine() + "\n"; //В переменную str по строчно записываем содержимое файла             
+                str += streamReader.ReadLine() + "\n";              
                 richTextBox1.Text = str;
             }
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
        

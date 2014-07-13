@@ -57,6 +57,7 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "Управление";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -68,6 +69,7 @@
             this.label3.TabIndex = 13;
             this.label3.Text = "Достижения";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 

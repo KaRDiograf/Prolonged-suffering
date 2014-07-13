@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using MyFIgures;
 using System.IO;
+using Achievments;
 
 namespace ProbaC2
 {
@@ -19,20 +20,23 @@ namespace ProbaC2
         int[] posJ= new int[4];
         int[] nextFigPosI = new int[4];
         int[] nextFigPosJ = new int[4];
-        int k = 0;
         Figure name;
         Figure nextFigure;
         Field field = new Field();
         Field nextFigField = new Field();
         FileInfo file = new FileInfo("Tabl.txt");
+        bool[] achAreCompleted = new bool[8];
         string[] names = new string[5];
         string[] scores = new string[5];
         RecordsTable recTable = new RecordsTable();
         public string playerName;
         private PauseMenu pauseMenu = new PauseMenu();
-        bool gameIsStarted = false;
         string figureName;
         Control control = new Control();
+        Achievment[] achievments = { new Loser(), new Busy(), new Champion(), new Shopaholic(), new Bomberman(), new Mag(), new Speed(), new Destroyer() };
+        bool isUnlocked = false;
+        UserStat userStat = new UserStat();
+        AchievmentsFile achFile = new AchievmentsFile();
        
         public Figure GetFigure()
         {
@@ -91,6 +95,15 @@ namespace ProbaC2
             }
         }
 
+        public int GetSpeed(int k)
+        {
+            if (userStat.scoresCount< 200000)
+            {
+                return 250 - userStat.scoresCount/ 1000;
+            }
+            else return 50;
+        }
+
         public void ShowTable(string[] names, string[] scores)
         {
             Tabl table = new Tabl(names, scores);
@@ -135,58 +148,109 @@ namespace ProbaC2
 
             if (e.KeyData == Keys.D1)
             {
-                k -= 3000;
-                for (int i = 0; i < 4; i++ )
+                if (userStat.scoresCount >= 3000)
                 {
-                    posJ[i] = posJ[i] + 2;
-                }
+                    userStat.scoresCount -= 3000;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        posJ[i] = posJ[i] + 2;
+                    }
                     field.RemoveLine(_Labels, 24);
-                    field.RemoveLine(_Labels, 24);     
+                    field.RemoveLine(_Labels, 24);
+                    userStat.removingCount++;
+                }
+                
             }
 
             if (e.KeyData == Keys.D2)
             {
-                nextFigure = new Bomb();
-                figureName = "Bomb";
-                k -= 3000;
-                nextFigField.Clear(nextFig);
-                nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
-                if (nextFigPosJ[3] != 3)
+                if (userStat.scoresCount >= 3000)
                 {
-                    nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+                    nextFigure = new Bomb();
+                    figureName = "Bomb";
+                    userStat.scoresCount -= 3000;
+                    nextFigField.Clear(nextFig);
+                    nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
+                    if (nextFigPosJ[3] != 3)
+                    {
+                        nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+                    }
+                    nextFigField.Draw(nextFig);
+                    userStat.bombsCount++;
                 }
-                nextFigField.Draw(nextFig);
+            }
+
+            if (e.KeyData == Keys.D3)
+            {
+                if (userStat.scoresCount >= 3000)
+                {
+                    pictureBox1.Visible = true;
+                    userStat.scoresCount -= 3000;
+                    slowTime.Enabled = true;
+                    timer1.Interval = 500;
+                    userStat.slowTimeCount++;
+                }
+            }
+
+            if (e.KeyData == Keys.D4)
+            {
+                userStat.scoresCount += 100000;
             }
 
             if (e.KeyData == Keys.Escape)
             {
-                if (gameIsStarted)
+                timer1.Enabled = false;
+                pauseMenu.choice.scoresCount = userStat.scoresCount;
+                pauseMenu.achForm.achArray = achAreCompleted;
+                pauseMenu.achForm.achievmentsFile = achFile;
+                pauseMenu.ShowDialog();
+                if (pauseMenu.choice.isChanged)
                 {
-                    timer1.Enabled = false;
-                    pauseMenu.ShowDialog();
-                    if (pauseMenu.choice.isChanged)
+                    userStat.scoresCount -= pauseMenu.choice.price;
+                    userStat.purchaseCount++;
+                    nextFigure = pauseMenu.choice.chosenFigure;
+                    nextFigField.Clear(nextFig);
+                    nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
+                    if (nextFigPosJ[3] != 3)
                     {
-                        k -= pauseMenu.choice.price;
-                        nextFigure = pauseMenu.choice.chosenFigure;
-                        nextFigField.Clear(nextFig);
-                        nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
-                        if (nextFigPosJ[3] != 3)
-                        {
-                            nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
-                        }
-                        nextFigField.Draw(nextFig);
-                        pauseMenu.choice.isChanged = false;
+                        nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
                     }
-                    timer1.Enabled = true;
+                    nextFigField.Draw(nextFig);
+                    pauseMenu.choice.isChanged = false;
                 }
+                timer1.Enabled = true;
+                userStat.pausesCount++;
             }
+        }
+
+        public void UnlockAchievments(bool[] achAreCompleted)
+        {
+            if (achAreCompleted[0]) pauseMenu.achForm.pictureBox1.Image = Properties.Resources.Rak2;
+            else pauseMenu.achForm.pictureBox1.Image = Properties.Resources.Zamok;
+            if (achAreCompleted[1]) pauseMenu.achForm.pictureBox2.Image = Properties.Resources.business;
+            else pauseMenu.achForm.pictureBox2.Image = Properties.Resources.Zamok;
+            if (achAreCompleted[2]) pauseMenu.achForm.pictureBox3.Image = Properties.Resources.Champion;
+            else pauseMenu.achForm.pictureBox3.Image = Properties.Resources.Zamok;
+            if (achAreCompleted[3]) pauseMenu.achForm.pictureBox4.Image = Properties.Resources.Shop;
+            else pauseMenu.achForm.pictureBox4.Image = Properties.Resources.Zamok;
+            if (achAreCompleted[4]) pauseMenu.achForm.pictureBox5.Image = Properties.Resources.bomberman;
+            else pauseMenu.achForm.pictureBox5.Image = Properties.Resources.Zamok;
+            if (achAreCompleted[5]) pauseMenu.achForm.pictureBox6.Image = Properties.Resources.Mag;
+            else pauseMenu.achForm.pictureBox6.Image = Properties.Resources.Zamok;
+            if (achAreCompleted[6]) pauseMenu.achForm.pictureBox7.Image = Properties.Resources.Sonic;
+            else pauseMenu.achForm.pictureBox7.Image = Properties.Resources.Zamok;
+            if (achAreCompleted[7]) pauseMenu.achForm.pictureBox8.Image = Properties.Resources.Destroyer;
+            else pauseMenu.achForm.pictureBox8.Image = Properties.Resources.Zamok;
         }
 
         public Form1()
         {
             InitializeComponent();
             this.AutoSize = true;
-            int count = 0;            
+            int count = 0;
+            userStat.playerPosition = -1;
+            achFile.ReadAchievments(achAreCompleted);
+            UnlockAchievments(achAreCompleted);
             for (int i = 0; i < _Labels.GetLength(0); i++)
             {
                 for (int j = 0; j < _Labels.GetLength(1); j++)
@@ -231,65 +295,88 @@ namespace ProbaC2
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        {           
-            label1.Text = k.ToString();
+        {
+            if (!slowTime.Enabled)
+            {
+                timer1.Interval = GetSpeed(userStat.scoresCount);
+            }
+            else timer1.Interval = 500;
+            label1.Text = userStat.scoresCount.ToString();
             if (posJ[0] < 24 && posJ[1] < 24 && posJ[2] < 24 && posJ[3] < 24 && name.CanMoveDown(_Labels, posI, posJ))
+            {
+                name.MoveDown(_Labels, posI, posJ);
+                field.Draw(_Labels);
+            }
+            else
+            {
+                while (field.CanRemoveLine(_Labels))
                 {
-                    name.MoveDown(_Labels, posI, posJ);
-                    field.Draw(_Labels);       
+                    field.RemoveLine(_Labels, field.GetNumberOfLine(_Labels));
+                    field.Draw(_Labels);
+                    userStat.scoresCount += 1000;
                 }
-             else
+                if (figureName == "Bomb")
                 {
-                    while (field.CanRemoveLine(_Labels))
-                    {  
-                        field.RemoveLine(_Labels,  field.GetNumberOfLine(_Labels));
-                        field.Draw(_Labels);
-                        k += 1000;           
-                    }
-                    if (figureName == "Bomb")
+                    name.Boom(_Labels, posI, posJ);
+                }
+                name = nextFigure;
+                name.GetStartPosition(_Labels, posI, posJ);
+                nextFigure = GetFigure();
+                nextFigField.Clear(nextFig);
+                nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
+                if (nextFigPosJ[3] != 3)
+                {
+                    nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+                }
+                nextFigField.Draw(nextFig);
+                if (!name.CanMoveDown(_Labels, posI, posJ))
+                {
+                    timer1.Enabled = false;
+
+                    if (recTable.CanChangeTabl(scores, userStat.scoresCount))
                     {
-                        name.Boom(_Labels, posI, posJ);
+                        userStat.playerPosition = recTable.GetPlayerPosition(scores, userStat.scoresCount);                       
+                        Form2 yourName = new Form2();
+                        yourName.ShowDialog();
+                        playerName = yourName.textBox1.Text;
+                        recTable.ChangeTabl(names, scores, playerName, userStat.scoresCount.ToString(), userStat.playerPosition);
+                        recTable.ReadTable(names, scores);
+                        userStat.playerPosition = -1;
+                        ShowTable(names, scores);
                     }
-                    name = nextFigure;
-                    name.GetStartPosition(_Labels, posI, posJ);
-                    nextFigure = GetFigure();
-                    nextFigField.Clear(nextFig);
-                    nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
-                    if (nextFigPosJ[3]!=3)
+                    for (int i = 0; i < 8; i++)
                     {
-                        nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
-                    }
-                    nextFigField.Draw(nextFig);
-                    if (!name.CanMoveDown(_Labels, posI, posJ))
-                    {
-                        
-                        field.Draw(_Labels);
-                        timer1.Enabled = false;
-                        if (recTable.CanChangeTabl(scores, k))
+                        if (achievments[i].isCompleted(userStat) && !achAreCompleted[i])
                         {
-
-                            Form2 yourName = new Form2();
-                            yourName.ShowDialog();
-                            playerName = yourName.textBox1.Text;
-                            recTable.ChangeTabl(names, scores, playerName, k.ToString(), recTable.GetPlayerPosition(scores, k));
-                            recTable.ReadTable(names, scores);
-                            ShowTable(names, scores);
+                            achAreCompleted[i] = true;
+                            isUnlocked = true;
                         }
-   
-                        timer1.Enabled = false;
-                        LNewGame.Enabled = true;
-                        LRecords.Enabled = true;
 
+                    }
+                    achFile.WriteAchievments(achAreCompleted);
+                    UnlockAchievments(achAreCompleted);
+                    if (isUnlocked)
+                    {
+                        newAch.Visible = true;
                     }
                     field.Draw(_Labels);
+
+                    timer1.Enabled = false;
+                    LNewGame.Enabled = true;
+                    LRecords.Enabled = true;                  
+                    ShowAchievments.Enabled = true;
+                    label3.Enabled = true;
+
                 }
+                field.Draw(_Labels);
+            }
         }
 
 
         private void LNewGame_Click(object sender, EventArgs e)
         {
-            gameIsStarted = true;
-            k = 0;
+            newAch.Visible = false;           
+            userStat.scoresCount= 0;
             field.Clear(_Labels);
             nextFigure = GetFigure();
             name = new S();
@@ -306,6 +393,9 @@ namespace ProbaC2
             timer1.Enabled = true;
             LNewGame.Enabled = false;
             LRecords.Enabled = false;
+            ShowAchievments.Enabled = false;
+            label3.Enabled = false;
+
         }
 
         private void LRecords_Click(object sender, EventArgs e)
@@ -326,20 +416,25 @@ namespace ProbaC2
 
         private void label3_Click(object sender, EventArgs e)
         {
-            /*FileInfo file = new FileInfo("Control.txt");
-            if (!file.Exists)
-            {
-                file.Create();
-            }
-            StreamReader streamReader = new StreamReader("Control.txt"); //Открываем файл для чтения
-            string str = ""; //Объявляем переменную, в которую будем записывать текст из файла
+            control.ShowDialog();                              
+        }
 
-            while (!streamReader.EndOfStream) //Цикл длиться пока не будет достигнут конец файла
-            {
-                str += streamReader.ReadLine(); //В переменную str по строчно записываем содержимое файла
-            }*/
-            control.ShowDialog();
-                                   
-        }     
+        private void newAch_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+            pauseMenu.achForm.ShowDialog();
+        }
+
+        private void ShowAchievments_Click(object sender, EventArgs e)
+        {
+            pauseMenu.achForm.ShowDialog();
+        }
+
+        private void slowTime_Tick(object sender, EventArgs e)
+        {
+            pictureBox1.Visible = false;
+            timer1.Interval = GetSpeed(userStat.scoresCount);
+            slowTime.Enabled = false;
+        } 
     }
 }

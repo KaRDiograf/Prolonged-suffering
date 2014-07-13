@@ -1,0 +1,10 @@
+Vasya
+50000
+Sasha
+40000
+Egor
+30000
+Oleg
+20000
+Vanya
+10000

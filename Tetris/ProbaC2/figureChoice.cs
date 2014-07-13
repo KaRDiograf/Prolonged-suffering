@@ -14,7 +14,8 @@ namespace ProbaC2
     {
         public Figure chosenFigure;
         public bool isChanged = false;
-        public int price;
+        public int price, purchaseCount = 0;
+        public int scoresCount;
 
         public figureChoice()
         {
@@ -23,7 +24,8 @@ namespace ProbaC2
 
         private void figureChoice_Load(object sender, EventArgs e)
         {
-
+            label6.Text = scoresCount.ToString();
+            label6.Text += " очков"; 
         }
 
 
@@ -31,6 +33,7 @@ namespace ProbaC2
         private void label2_Click(object sender, EventArgs e)
         {
             isChanged = true;
+            purchaseCount++;
             Close();
         }
 
@@ -40,6 +43,15 @@ namespace ProbaC2
             Scores.Text = "6000 очков";
             price = 6000;
             chosenFigureName.Text = "I";
+            if (scoresCount >= price)
+            {
+                label2.Enabled = true;
+            }
+            else
+            {
+                label2.Enabled = false;
+            }
+        
         }
 
         private void pictureBox6_Click_1(object sender, EventArgs e)
@@ -48,6 +60,14 @@ namespace ProbaC2
             Scores.Text = "5000 очков";
             price = 5000;
             chosenFigureName.Text = "J";
+            if (scoresCount >= price)
+            {
+                label2.Enabled = true;
+            }
+            else
+            {
+                label2.Enabled = false;
+            }
         }
 
         private void pictureBox5_Click_1(object sender, EventArgs e)
@@ -56,6 +76,14 @@ namespace ProbaC2
             Scores.Text = "5000 очков";
             price = 5000;
             chosenFigureName.Text = "L";
+            if (scoresCount >= price)
+            {
+                label2.Enabled = true;
+            }
+            else
+            {
+                label2.Enabled = false;
+            }
         }
 
         private void pictureBox7_Click_1(object sender, EventArgs e)
@@ -64,6 +92,14 @@ namespace ProbaC2
             Scores.Text = "5000 очков";
             price = 5000;
             chosenFigureName.Text = "O";
+            if (scoresCount >= price)
+            {
+                label2.Enabled = true;
+            }
+            else
+            {
+                label2.Enabled = false;
+            }
         }
 
         private void pictureBox3_Click_1(object sender, EventArgs e)
@@ -72,6 +108,14 @@ namespace ProbaC2
             Scores.Text = "4000 очков";
             price = 4000;
             chosenFigureName.Text = "S";
+            if (scoresCount >= price)
+            {
+                label2.Enabled = true;
+            }
+            else
+            {
+                label2.Enabled = false;
+            }
         }
 
         private void pictureBox2_Click_1(object sender, EventArgs e)
@@ -80,6 +124,14 @@ namespace ProbaC2
             Scores.Text = "4000 очков";
             price = 4000;
             chosenFigureName.Text = "Z";
+            if (scoresCount >= price)
+            {
+                label2.Enabled = true;
+            }
+            else
+            {
+                label2.Enabled = false;
+            }
         }
 
         private void pictureBox4_Click_1(object sender, EventArgs e)
@@ -88,6 +140,14 @@ namespace ProbaC2
             Scores.Text = "5000 очков";
             price = 5000;
             chosenFigureName.Text = "T";
+            if (scoresCount >= price)
+            {
+                label2.Enabled = true;
+            }
+            else
+            {
+                label2.Enabled = false;
+            }
         }
 
         private void label4_Click_1(object sender, EventArgs e)

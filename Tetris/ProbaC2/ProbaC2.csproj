@@ -49,6 +49,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Achievments">
+      <HintPath>.\Achievments.dll</HintPath>
+    </Reference>
     <Reference Include="MyFIgures, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\MyFIgures.dll</HintPath>
@@ -66,6 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="achievmentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="achievmentsForm.Designer.cs">
+      <DependentUpon>achievmentsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Control.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +113,9 @@
     <Compile Include="Таблица рекордов.Designer.cs">
       <DependentUpon>Таблица рекордов.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="achievmentsForm.resx">
+      <DependentUpon>achievmentsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Control.resx">
       <DependentUpon>Control.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,6 +196,36 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Achievments\Rak2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Achievments\bomberman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Achievments\business.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Achievments\Champion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Achievments\Mag.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Achievments\Shop.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Achievments\Sonic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Achievments\Zamok.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Figures\Snow.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Achievments\Destroyer.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

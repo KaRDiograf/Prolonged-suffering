@@ -37,6 +37,11 @@
             this.LRecords = new System.Windows.Forms.Label();
             this.LExit = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.slowTime = new System.Windows.Forms.Timer(this.components);
+            this.newAch = new System.Windows.Forms.Label();
+            this.ShowAchievments = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -69,7 +74,7 @@
             // 
             this.LNewGame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LNewGame.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LNewGame.Location = new System.Drawing.Point(458, 378);
+            this.LNewGame.Location = new System.Drawing.Point(458, 268);
             this.LNewGame.Name = "LNewGame";
             this.LNewGame.Size = new System.Drawing.Size(168, 33);
             this.LNewGame.TabIndex = 4;
@@ -91,7 +96,7 @@
             // 
             this.LRecords.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LRecords.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.LRecords.Location = new System.Drawing.Point(458, 421);
+            this.LRecords.Location = new System.Drawing.Point(458, 417);
             this.LRecords.Name = "LRecords";
             this.LRecords.Size = new System.Drawing.Size(168, 33);
             this.LRecords.TabIndex = 6;
@@ -115,7 +120,7 @@
             // 
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label3.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(458, 335);
+            this.label3.Location = new System.Drawing.Point(458, 320);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(168, 33);
             this.label3.TabIndex = 8;
@@ -123,12 +128,56 @@
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
+            // slowTime
+            // 
+            this.slowTime.Interval = 5000;
+            this.slowTime.Tick += new System.EventHandler(this.slowTime_Tick);
+            // 
+            // newAch
+            // 
+            this.newAch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.newAch.Font = new System.Drawing.Font("Courier New", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.newAch.Location = new System.Drawing.Point(299, 20);
+            this.newAch.Name = "newAch";
+            this.newAch.Size = new System.Drawing.Size(138, 65);
+            this.newAch.TabIndex = 11;
+            this.newAch.Text = "Было открыто новое достижение!";
+            this.newAch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.newAch.Visible = false;
+            this.newAch.Click += new System.EventHandler(this.newAch_Click);
+            // 
+            // ShowAchievments
+            // 
+            this.ShowAchievments.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ShowAchievments.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ShowAchievments.Location = new System.Drawing.Point(458, 369);
+            this.ShowAchievments.Name = "ShowAchievments";
+            this.ShowAchievments.Size = new System.Drawing.Size(168, 33);
+            this.ShowAchievments.TabIndex = 12;
+            this.ShowAchievments.Text = "Достижения";
+            this.ShowAchievments.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ShowAchievments.Click += new System.EventHandler(this.ShowAchievments_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ProbaC2.Properties.Resources.Snow;
+            this.pictureBox1.Location = new System.Drawing.Point(22, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(31, 28);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(652, 542);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.ShowAchievments);
+            this.Controls.Add(this.newAch);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.LExit);
             this.Controls.Add(this.LRecords);
@@ -140,6 +189,7 @@
             this.Name = "Form1";
             this.Text = "Tetris: change your mind v.0.9";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,6 +205,10 @@
         private System.Windows.Forms.Label LRecords;
         private System.Windows.Forms.Label LExit;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Timer slowTime;
+        private System.Windows.Forms.Label newAch;
+        private System.Windows.Forms.Label ShowAchievments;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
 
 
