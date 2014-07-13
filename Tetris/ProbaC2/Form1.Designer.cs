@@ -36,6 +36,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.LRecords = new System.Windows.Forms.Label();
             this.LExit = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -110,12 +111,25 @@
             this.LExit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LExit.Click += new System.EventHandler(this.LExit_Click);
             // 
+            // label3
+            // 
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(458, 335);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(168, 33);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Управление";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(652, 542);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.LExit);
             this.Controls.Add(this.LRecords);
             this.Controls.Add(this.label4);
@@ -140,6 +154,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label LRecords;
         private System.Windows.Forms.Label LExit;
+        private System.Windows.Forms.Label label3;
 
 
 

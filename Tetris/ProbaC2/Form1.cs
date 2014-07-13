@@ -32,6 +32,7 @@ namespace ProbaC2
         private PauseMenu pauseMenu = new PauseMenu();
         bool gameIsStarted = false;
         string figureName;
+        Control control = new Control();
        
         public Figure GetFigure()
         {
@@ -321,6 +322,24 @@ namespace ProbaC2
         private void LExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            /*FileInfo file = new FileInfo("Control.txt");
+            if (!file.Exists)
+            {
+                file.Create();
+            }
+            StreamReader streamReader = new StreamReader("Control.txt"); //Открываем файл для чтения
+            string str = ""; //Объявляем переменную, в которую будем записывать текст из файла
+
+            while (!streamReader.EndOfStream) //Цикл длиться пока не будет достигнут конец файла
+            {
+                str += streamReader.ReadLine(); //В переменную str по строчно записываем содержимое файла
+            }*/
+            control.ShowDialog();
+                                   
         }     
     }
 }
