@@ -115,111 +115,138 @@ namespace ProbaC2
             
             if (e.KeyData == Keys.Down)
             {
-                if (posJ[0] < 24 && posJ[1] < 24 && posJ[2] < 24 && posJ[3] < 24 && name.CanMoveDown(_Labels, posI, posJ))
+                if (timer1.Enabled == true)
                 {
-                    name.MoveDown(_Labels, posI, posJ);
-                    field.Draw(_Labels);
+                    if (posJ[0] < 24 && posJ[1] < 24 && posJ[2] < 24 && posJ[3] < 24 && name.CanMoveDown(_Labels, posI, posJ))
+                    {
+                        name.MoveDown(_Labels, posI, posJ);
+                        field.Draw(_Labels);
+                    }
                 }
             }
 
             if (e.KeyData == Keys.Left)
             {
-                if (posI[0] > 0 && posI[1] > 0 && posI[2] > 0 && posI[3] > 0 && name.CanMoveLeft(_Labels, posI, posJ))
+                if (timer1.Enabled == true)
                 {
-                    name.MoveLeft(_Labels, posI, posJ);
-                    field.Draw(_Labels);
+                    if (posI[0] > 0 && posI[1] > 0 && posI[2] > 0 && posI[3] > 0 && name.CanMoveLeft(_Labels, posI, posJ))
+                    {
+                        name.MoveLeft(_Labels, posI, posJ);
+                        field.Draw(_Labels);
+                    }
                 }
             }
 
             if (e.KeyData == Keys.Right)
             {
-                if (posI[0] < 9 && posI[1] < 9 && posI[2] < 9 && posI[3] < 9 && name.CanMoveRight(_Labels, posI, posJ))
+                if (timer1.Enabled == true)
                 {
-                    name.MoveRight(_Labels, posI, posJ);
-                    field.Draw(_Labels);
+                    if (posI[0] < 9 && posI[1] < 9 && posI[2] < 9 && posI[3] < 9 && name.CanMoveRight(_Labels, posI, posJ))
+                    {
+                        name.MoveRight(_Labels, posI, posJ);
+                        field.Draw(_Labels);
+                    }
                 }
             }
 
             if (e.KeyData == Keys.Space)
-            {               
-                name = name.Turn(_Labels, posI, posJ);
-                field.Draw(_Labels);
+            {
+                if (timer1.Enabled == true)
+                {
+                    name = name.Turn(_Labels, posI, posJ);
+                    field.Draw(_Labels);
+                }
             }
 
             if (e.KeyData == Keys.D1)
             {
-                if (userStat.scoresCount >= 3000)
+                if (timer1.Enabled == true)
                 {
-                    userStat.scoresCount -= 3000;
-                    for (int i = 0; i < 4; i++)
+                    if (userStat.scoresCount >= 3000)
                     {
-                        posJ[i] = posJ[i] + 2;
+                        userStat.scoresCount -= 3000;
+                        for (int i = 0; i < 4; i++)
+                        {
+                            posJ[i] = posJ[i] + 2;
+                        }
+                        field.RemoveLine(_Labels, 24);
+                        field.RemoveLine(_Labels, 24);
+                        userStat.removingCount++;
                     }
-                    field.RemoveLine(_Labels, 24);
-                    field.RemoveLine(_Labels, 24);
-                    userStat.removingCount++;
                 }
                 
             }
 
             if (e.KeyData == Keys.D2)
             {
-                if (userStat.scoresCount >= 3000)
+                if (timer1.Enabled == true)
                 {
-                    nextFigure = new Bomb();
-                    figureName = "Bomb";
-                    userStat.scoresCount -= 3000;
-                    nextFigField.Clear(nextFig);
-                    nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
-                    if (nextFigPosJ[3] != 3)
+                    if (userStat.scoresCount >= 3000)
                     {
-                        nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+                        nextFigure = new Bomb();
+                        figureName = "Bomb";
+                        userStat.scoresCount -= 3000;
+                        nextFigField.Clear(nextFig);
+                        nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
+                        if (nextFigPosJ[3] != 3)
+                        {
+                            nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+                        }
+                        nextFigField.Draw(nextFig);
+                        userStat.bombsCount++;
                     }
-                    nextFigField.Draw(nextFig);
-                    userStat.bombsCount++;
                 }
             }
 
             if (e.KeyData == Keys.D3)
             {
-                if (userStat.scoresCount >= 3000)
+                if (timer1.Enabled == true)
                 {
-                    pictureBox1.Visible = true;
-                    userStat.scoresCount -= 3000;
-                    slowTime.Enabled = true;
-                    timer1.Interval = 500;
-                    userStat.slowTimeCount++;
+                    if (userStat.scoresCount >= 3000)
+                    {
+                        pictureBox1.Visible = true;
+                        userStat.scoresCount -= 3000;
+                        slowTime.Enabled = true;
+                        timer1.Interval = 500;
+                        userStat.slowTimeCount++;
+                    }
                 }
             }
 
             if (e.KeyData == Keys.D4)
             {
-                userStat.scoresCount += 100000;
+                if (timer1.Enabled == true)
+                {
+                    userStat.scoresCount += 100000;
+                }
             }
 
             if (e.KeyData == Keys.Escape)
             {
-                timer1.Enabled = false;
-                pauseMenu.choice.scoresCount = userStat.scoresCount;
-                pauseMenu.achForm.achArray = achAreCompleted;
-                pauseMenu.achForm.achievmentsFile = achFile;
-                pauseMenu.ShowDialog();
-                if (pauseMenu.choice.isChanged)
+                if (timer1.Enabled == true)
                 {
-                    userStat.scoresCount -= pauseMenu.choice.price;
-                    userStat.purchaseCount++;
-                    nextFigure = pauseMenu.choice.chosenFigure;
-                    nextFigField.Clear(nextFig);
-                    nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
-                    if (nextFigPosJ[3] != 3)
+                    timer1.Enabled = false;
+                    pauseMenu.choice.scoresCount = userStat.scoresCount;
+                    pauseMenu.achForm.achArray = achAreCompleted;
+                    pauseMenu.achForm.achievmentsFile = achFile;
+                    pauseMenu.ShowDialog();
+                    if (pauseMenu.choice.isChanged)
                     {
-                        nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+                        userStat.scoresCount -= pauseMenu.choice.price;
+                        userStat.purchaseCount++;
+                        nextFigure = pauseMenu.choice.chosenFigure;
+                        nextFigField.Clear(nextFig);
+                        nextFigure.GetStartPosition(nextFig, nextFigPosI, nextFigPosJ);
+                        if (nextFigPosJ[3] != 3)
+                        {
+                            nextFigure.MoveDown(nextFig, nextFigPosI, nextFigPosJ);
+                        }
+                        nextFigField.Draw(nextFig);
+                        pauseMenu.choice.isChanged = false;
                     }
-                    nextFigField.Draw(nextFig);
-                    pauseMenu.choice.isChanged = false;
+                    timer1.Enabled = true;
+                    userStat.pausesCount++;
                 }
-                timer1.Enabled = true;
-                userStat.pausesCount++;
             }
         }
 
@@ -341,7 +368,6 @@ namespace ProbaC2
                         playerName = yourName.textBox1.Text;
                         recTable.ChangeTabl(names, scores, playerName, userStat.scoresCount.ToString(), userStat.playerPosition);
                         recTable.ReadTable(names, scores);
-                        userStat.playerPosition = -1;
                         ShowTable(names, scores);
                     }
                     for (int i = 0; i < 8; i++)
@@ -353,6 +379,7 @@ namespace ProbaC2
                         }
 
                     }
+                    userStat.playerPosition = -1;
                     achFile.WriteAchievments(achAreCompleted);
                     UnlockAchievments(achAreCompleted);
                     if (isUnlocked)
