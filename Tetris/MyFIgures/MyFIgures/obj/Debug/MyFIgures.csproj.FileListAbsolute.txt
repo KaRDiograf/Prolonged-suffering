@@ -1,5 +1,0 @@
-d:\мои документы\visual studio 2010\Projects\MyFIgures\MyFIgures\bin\Debug\MyFIgures.dll
-d:\мои документы\visual studio 2010\Projects\MyFIgures\MyFIgures\bin\Debug\MyFIgures.pdb
-d:\мои документы\visual studio 2010\Projects\MyFIgures\MyFIgures\obj\Debug\MyFIgures.dll
-d:\мои документы\visual studio 2010\Projects\MyFIgures\MyFIgures\obj\Debug\MyFIgures.pdb
-D:\Мои документы\Visual Studio 2010\Projects\MyFIgures\MyFIgures\obj\Debug\MyFIgures.csprojResolveAssemblyReference.cache
