@@ -180,6 +180,7 @@
             this.ClientSize = new System.Drawing.Size(234, 162);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Tabl";
             this.Text = "Records";
             this.Load += new System.EventHandler(this.Tabl_Load);
