@@ -73,6 +73,8 @@
             this.Controls.Add(this.LRecords);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form2";
             this.Text = "Your name";
             this.ResumeLayout(false);
