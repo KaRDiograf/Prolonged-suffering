@@ -1,0 +1,4 @@
+d:\мои документы\visual studio 2010\Projects\Achievments\Achievments\bin\Debug\Achievments.dll
+d:\мои документы\visual studio 2010\Projects\Achievments\Achievments\bin\Debug\Achievments.pdb
+d:\мои документы\visual studio 2010\Projects\Achievments\Achievments\obj\Debug\Achievments.dll
+d:\мои документы\visual studio 2010\Projects\Achievments\Achievments\obj\Debug\Achievments.pdb
